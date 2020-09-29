@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/merchant.css') }}">
+{% endblock styles %}
+{% block content %}
+<div class="container">
+  <div class="image d-flex">
+    <img class="rounded-circle account-img" src="{{ url_for('static', filename='img/default.jpg') }}" alt="">
+    <h2 class="align-items-center mt-5">Administrator</h2>
+  </div>
+  <div class="details">
+    <h4>Name :</h4>
+    <h4>ID Number :</h4>
+    <h4>Age :</h4>
+    <h4>Store Branch :</h4>
+  </div>
+  <div class="employee-progress">
+    <h4 class="text-center">Employee Progress</h4>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore aspernatur quas doloremque sit et quam
+      voluptatem corporis ducimus dolor provident velit excepturi harum vitae nostrum, ipsam exercitationem eius est?
+      Corrupti?</p>
+  </div>
+  <div class="update">
+    <a class="btn btn-info" href="">Deactivate Account</a>
+    <button type="submit" class="btn btn-danger">Delete Account</button>
+  </div>
+</div>
+{% endblock content %}
