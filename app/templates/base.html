@@ -30,6 +30,7 @@
 </head>
 
 <body class="body">
+  {%block navbar%}
   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Store name</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +42,9 @@
       </li>
     </ul>
   </nav>
+  {%endblock%}
   <div class="content container row">
+    {%block sidenav%}
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
@@ -57,6 +60,7 @@
         </ul>  
       </div>
     </nav>
+    {%endblock%}
     <div class="main col-md-9 ml-sm-auto col-lg-10 px-lg-5 px-md-4">
       {% block content %}{% endblock content %}
     </div> 

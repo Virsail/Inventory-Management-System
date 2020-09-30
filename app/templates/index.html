@@ -2,6 +2,6 @@
 
 {%block content%}
 <h2>Hello world</h2>
-<button>Register as a merchant</button>
-<button>Login as a clerk</button>
+<a href="{{url_for('auth.login')}}"><button>sign in as a merchant</button></a>
+<a href="{{url_for('auth.login')}}"><button>Login as a clerk</button></a>
 {%endblock%}
