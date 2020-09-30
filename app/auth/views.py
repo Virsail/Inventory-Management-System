@@ -1,6 +1,6 @@
 from flask import render_template,redirect,url_for, flash,request
 from . import auth
-from ..models import User,Clerk
+from ..models import User
 from .. import db
 from flask_login import login_user,logout_user,login_required
 from .forms import LoginForm,RegistrationMerchantForm,RegistrationClerkForm
@@ -39,13 +39,13 @@ def register_merchant():
 def register_clerk():
     form = RegistrationClerkForm()
     if form.validate_on_submit():
-        clerk = Clerk(email = form.email.data, role = form.role.data,id_number = form.id_number.data, full_name = form.full_name.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
-        db.session.add(clerk)
+        user = User(email = form.email.data, role = form.role.data,username = form.full_name.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
+        db.session.add(user)
         db.session.commit()
 
         return redirect(url_for('auth.login'))
-        title = "Register clerk Account"
-    return render_template('auth/register_clerk.html',registration_form = form,title=title)         
+        
+    return render_template('auth/register_clerk.html',registration_form = form)         
 
 
 
