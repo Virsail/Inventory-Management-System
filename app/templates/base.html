@@ -31,20 +31,53 @@
 </head>
 
 <body class="body">
+
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Store name</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="#">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="content container row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <div class="avatar mx-auto text-center">
+              <img src="https://www.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" style="width: 150px;"  class="mx-auto rounded-circle"
+              alt="Profile Pic">
+              <h4 class="text-center my-2">Username</h4>
+            </div>
+          </li>
+          {%block navlinks%}
+          {%endblock%}
+        </ul>  
+      </div>
+    </nav>
+    <div class="main col-md-9 ml-sm-auto col-lg-10 px-lg-5 px-md-4">
+      <div class="content container">
+        {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+      </div>
+      {% block content %}{% endblock content %}
+    </div> 
+
   {%block navbar%}
   {%endblock navbar%}
 
 
-  <div class="content container">
-    {% with messages = get_flashed_messages(with_categories = true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    <div class="alert alert-{{ category }}">{{ message }}</div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    {% block content %}{% endblock content %}
-  </div>
+  
 
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -1,25 +1,36 @@
 {% extends 'base.html' %}
-{% block content %}
+{%block navlinks%}
+<li class="nav-item">
+  <a class="nav-link active" href="#">
+    <i class="fas fa-columns"></i>
+    Dashboard <span class="sr-only">(current)</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="#">
+    <i class="fas fa-columns"></i>
+    Dashboard <span class="sr-only">(current)</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="#">
+    <i class="fas fa-columns"></i>
+    Dashboard <span class="sr-only">(current)</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="#">
+    <i class="fas fa-columns"></i>
+    Dashboard <span class="sr-only">(current)</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="#">
+    <i class="fas fa-columns"></i>
+    Dashboard <span class="sr-only">(current)</span>
+  </a>
+</li>
+{%endblock%}
+{%block content%}
 <h2>Hello world</h2>
-<div class="btn-group dropright">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">
-    Employees
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="{{ url_for('merchant.clerks') }}">Clerks</a>
-    <a class="dropdown-item" href="{{ url_for('merchant.register') }}">New Employee</a>
-  </div>
-</div>
-<div class="btn-group dropright">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">
-    Stores
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="{{ url_for('merchant.stores') }}">Westgate Shop</a>
-  </div>
-</div>
-
-
-{% endblock %}
+{%endblock%}
