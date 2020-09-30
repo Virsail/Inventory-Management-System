@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{%block navlinks%}
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('clerk.index')}}">
+    <i class="fas fa-columns"></i>
+    Inventory 
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="{{url_for('clerk.update_sales')}}">
+    <i class="fas fa-columns"></i>
+    Update Sales <span class="sr-only">(current)</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">
+    <i class="fas fa-columns"></i>
+    Update products 
+  </a>
+</li>
+
+{%endblock%}
+{%block content%}
+<div class="card mt-5">
+  <div class="card-header card-header-primary text-center">
+    <h4 class="card-title">Sales</h4>
+    <p class="card-category">Add item sold</p>
+  </div>
+  <div class="card-body">
+    <form>
+     
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="bmd-label-floating">Select item from list</label>
+            <select name="item_sold" class="browser-default custom-select" required>
+              <option value="" disabled selected>Products</option>
+              <option value="Soap">Soap</option>
+              <option value="Colgate">Colgate</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="bmd-label-floating">Quantity Sold</label>
+            <input type="number" name="quantity_sold" class="form-control" placeholder="Quantity sold" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right text-center">Add Sales</button>
+          </div>
+        </div>
+      </div>
+     
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</div>
+{%endblock%}

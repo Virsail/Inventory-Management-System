@@ -13,7 +13,7 @@ def index():
 
 
 
-@clerk.route('/')
+@clerk.route('/update/sales')
 def update_sales():
 
     '''
