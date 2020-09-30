@@ -3,7 +3,7 @@ from . import auth
 from ..models import User
 from .. import db
 from flask_login import login_user,logout_user,login_required
-from .forms import LoginForm
+from .forms import LoginForm,RegistrationMerchantForm
 
 
 @auth.route('/login',methods=['GET','POST'])
@@ -21,3 +21,15 @@ def login():
     title = "User login"
     return render_template('auth/login.html',login_form = login_form,title=title)
 
+
+@auth.route('/register',methods = ["GET","POST"])
+def register_merchant():
+    form = RegistrationMerchantForm()
+    if form.validate_on_submit():
+        user = User(email = form.email.data, role = form.role.data,username = form.username.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('auth.login'))
+        title = "New Account"
+    return render_template('auth/register_merchant.html',registration_form = form)    
