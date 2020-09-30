@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
-{%block content%}
+{% block content %}
 <h2>Hello world</h2>
-{%endblock%}
+<div class="btn-group dropright">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false">
+    Employees
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{{ url_for('merchant.clerks') }}">Clerks</a>
+    <a class="dropdown-item" href="{{ url_for('merchant.register') }}">New Employee</a>
+  </div>
+</div>
+<div class="btn-group dropright">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false">
+    Stores
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{{ url_for('merchant.stores') }}">Westgate Shop</a>
+  </div>
+</div>
+
+
+{% endblock %}
