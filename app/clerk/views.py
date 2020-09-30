@@ -1,0 +1,45 @@
+from flask import render_template
+from . import clerk
+
+# Views
+@clerk.route('/')
+def index():
+
+    '''
+    View root page function that returns the clerk index page and its data
+    '''
+    
+    return render_template('clerk/index.html')
+
+
+
+@clerk.route('/update/sales')
+def update_sales():
+
+    '''
+    View root page function that returns the clerk update_sales page and its data
+    '''
+    
+    return render_template('clerk/update_sales.html')
+
+
+@clerk.route('/products')
+def products():
+
+    '''
+    View root page function that returns the clerk products page and its data
+    '''
+    
+    return render_template('clerk/products.html')
+
+
+
+@clerk.route('/update/product')
+def update_product():
+
+    '''
+    View root page function that returns the clerk update product page and its data
+    '''
+    
+    return render_template('clerk/update_product.html')                   
+
