@@ -46,7 +46,7 @@ def index():
 def update_sales():
 
     '''
-    View root page function that returns the clerk update_sales page and its data
+    View update sales page function that returns the clerk update_sales page and its data
     '''
     products=Product.query.all()
     if request.method=='POST':
@@ -65,7 +65,7 @@ def update_sales():
             db.session.add(product)
             db.session.commit()
             flash(f'{product_name} sale updated','success')
-            return redirect(url_for('clerk.update_sales'))   
+            return redirect(url_for('clerk.my_sales'))   
 
     return render_template('clerk/update_sales.html',products=products)
 
@@ -75,7 +75,7 @@ def update_sales():
 def products():
 
     '''
-    View root page function that returns the clerk products page and its data
+    View product page function that returns the clerk products page and its data
     '''
 
     products=Product.query.all()
@@ -85,10 +85,11 @@ def products():
 
 
 @clerk.route('/update/product/<product_name>',methods= ['GET','POST'])
+@login_required
 def update_product(product_name):
 
     '''
-    View root page function that returns the clerk update product page and its data
+    View update product page function that returns the clerk update product page and its data
     '''
     product=Product.query.filter_by(product_name = product_name).first()
     if request.method=='POST':
@@ -106,5 +107,16 @@ def update_product(product_name):
         db.session.commit()
         flash(f'{product_name} details updated','success')
         return redirect(url_for('clerk.products'))   
-    return render_template('clerk/update_product.html',product=product)                   
+    return render_template('clerk/update_product.html',product=product)
+
+
+@clerk.route('/mysales')
+@login_required         
+def my_sales():
+    '''
+    View my sales page function that returns the clerk sales page and its data
+    '''
+    sales=Sale.query.filter_by(user_id=current_user.id).order_by(Sale.sale_time.desc()).all()      
+    return render_template('clerk/sales.html',sales=sales)
+
 
