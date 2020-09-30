@@ -17,6 +17,9 @@ def clerk_name():
 def stores():
   return render_template('merchant/stores.html')
 
+@merchant.route('/stores/westgate')
+def westgate_shop():
+  return render_template('merchant/stores/westgate.html')
 
 @merchant.route('/register', methods=['GET', 'POST'])
 def register():
