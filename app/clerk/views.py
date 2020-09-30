@@ -30,5 +30,16 @@ def products():
     View root page function that returns the clerk products page and its data
     '''
     
-    return render_template('clerk/products.html')         
+    return render_template('clerk/products.html')
+
+
+
+@clerk.route('/update/product')
+def update_product():
+
+    '''
+    View root page function that returns the clerk update product page and its data
+    '''
+    
+    return render_template('clerk/update_product.html')                   
 
