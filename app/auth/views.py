@@ -39,8 +39,8 @@ def register_merchant():
 def register_clerk():
     form = RegistrationClerkForm()
     if form.validate_on_submit():
-        user = User(email = form.email.data, role = form.role.data,username = form.username.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
-        db.session.add(user)
+        clerk = Clerk(email = form.email.data, role = form.role.data,id_number = form.id_number.data, full_name = form.full_name.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
+        db.session.add(clerk)
         db.session.commit()
 
         return redirect(url_for('auth.login'))

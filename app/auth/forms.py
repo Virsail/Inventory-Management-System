@@ -14,8 +14,7 @@ class LoginForm(FlaskForm):
 
 class RegistrationMerchantForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required(),Email()])
-    full_name = StringField('Enter your fullname',validators = [Required()])
-    id_number = IntergerField('Enter your ID Number',validators = [Required()])
+    
     role = SelectField(u'Role', choices=[('Merchant', 'merchant')],validators = [Required()])
     password = PasswordField('Password',validators = [Required(), EqualTo('password_confirm',message = 'Passwords must match')])
     password_confirm = PasswordField('Confirm Passwords',validators = [Required()])
@@ -40,7 +39,8 @@ class RegistrationMerchantForm(FlaskForm):
 
 class RegistrationClerkForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required(),Email()])
-    username = StringField('Enter your username',validators = [Required()])
+    full_name = StringField('Enter your fullname',validators = [Required()])
+    id_number = IntergerField('Enter your ID Number',validators = [Required()])
     role = SelectField(u'Role', choices=[('Clerk', 'Clerk')],validators = [Required()])
     password = PasswordField('Password',validators = [Required(), EqualTo('password_confirm',message = 'Passwords must match')])
     password_confirm = PasswordField('Confirm Passwords',validators = [Required()])
