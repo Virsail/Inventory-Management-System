@@ -1,7 +1,7 @@
 from flask import render_template,abort,request,redirect,url_for,flash
 from . import clerk
 from flask_login import login_required,current_user
-from ..models import Product,OrderReceived
+from ..models import Product,OrderReceived,Sale
 from .. import db
 # Views
 @clerk.route('/',methods= ['GET','POST'])
@@ -41,15 +41,33 @@ def index():
 
 
 
-@clerk.route('/update/sales')
+@clerk.route('/update/sales',methods= ['GET','POST'])
+@login_required
 def update_sales():
 
     '''
     View root page function that returns the clerk update_sales page and its data
     '''
-    
+    products=Product.query.all()
+    if request.method=='POST':
+        product_name=request.form['item_sold']
+        quantity_sold=int(request.form['quantity_sold'])
+        
+        product = Product.query.filter_by(product_name = product_name).first()
+        if product.product_stock<quantity_sold:
+            flash(f'Sorry could not add sale.Stock is {product.product_stock}','danger')
+            return redirect(url_for('clerk.update_sales'))
+        else:
+            total_sale=product.product_selling_price*quantity_sold
+            new_sale=Sale(product_name=product_name,sale_quantity=quantity_sold,sale_amount=total_sale,user=current_user)
+            new_sale.save_sale()
+            product.product_stock= product.product_stock-quantity_sold
+            db.session.add(product)
+            db.session.commit()
+            flash(f'{product_name} sale updated','success')
+            return redirect(url_for('clerk.update_sales'))   
 
-    return render_template('clerk/update_sales.html')
+    return render_template('clerk/update_sales.html',products=products)
 
 
 @clerk.route('/products')

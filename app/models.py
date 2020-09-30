@@ -97,6 +97,7 @@ class Sale(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     product_name = db.Column(db.String(255))
     sale_quantity = db.Column(db.Integer)
+    sale_amount=db.Column(db.Integer)
     sale_time = db.Column(db.DateTime,default=datetime.utcnow)
 
 

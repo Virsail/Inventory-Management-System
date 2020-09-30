@@ -27,7 +27,8 @@
     <p class="card-category">Add item sold</p>
   </div>
   <div class="card-body">
-    <form>
+    {%if products%}
+    <form action="" method="post">
      
       <div class="row">
         <div class="col-md-12">
@@ -35,8 +36,9 @@
             <label class="bmd-label-floating">Select item from list</label>
             <select name="item_sold" class="browser-default custom-select" required>
               <option value="" disabled selected>Products</option>
-              <option value="Soap">Soap</option>
-              <option value="Colgate">Colgate</option>
+              {%for product in products%}
+              <option value="{{product.product_name}}">{{product.product_name}}</option>
+              {%endfor%}
             </select>
           </div>
         </div>
@@ -59,6 +61,15 @@
      
       <div class="clearfix"></div>
     </form>
+    {%else%}
+    <div class="container text-center">
+      <div style="margin-top: 100px" class="alert alert-danger" role="alert">
+        <h4 class="alert-heading"><i class="far fa-surprise fa-lg"></i> Oops, you are out of stock.</h4>
+        <a href="{{url_for('clerk.index')}}"> <button type="submit" class="btn btn-primary pull-right text-center">Add Inventory</button></a>
+        <hr>
+      </div>
+    </div>
+    {%endif%}
   </div>
 </div>
 {%endblock%}
