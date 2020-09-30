@@ -21,6 +21,7 @@ class User(UserMixin,db.Model):
     role = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
     ordersreceived = db.relationship('OrderReceived',backref = 'user',lazy = "dynamic")
+    sales = db.relationship('Sale',backref = 'user',lazy = "dynamic")
     
     
     
@@ -42,7 +43,7 @@ class User(UserMixin,db.Model):
 
 
 
-class Product(UserMixin,db.Model):
+class Product(db.Model):
 
     'Product model schema'
 
@@ -63,7 +64,7 @@ class Product(UserMixin,db.Model):
         return f'Product {self.product_name}'
 
 
-class OrderReceived(UserMixin,db.Model):
+class OrderReceived(db.Model):
 
     'OrderReceived model schema'
 
@@ -83,4 +84,25 @@ class OrderReceived(UserMixin,db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'OrderReceived {self.id}'        
+        return f'OrderReceived {self.id}'  
+
+
+class Sale(db.Model):
+
+    'Sale model schema'
+
+    __tablename__ = 'sales'
+
+    id = db.Column(db.Integer,primary_key = True)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    product_name = db.Column(db.String(255))
+    sale_quantity = db.Column(db.Integer)
+    sale_time = db.Column(db.DateTime,default=datetime.utcnow)
+
+
+    def save_sale(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'Sale of {self.product_name}'                
