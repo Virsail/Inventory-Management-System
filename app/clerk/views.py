@@ -23,11 +23,11 @@ def update_sales():
     return render_template('clerk/update_sales.html')
 
 
-@clerk.route('/update/products')
-def update_products():
+@clerk.route('/products')
+def products():
 
     '''
-    View root page function that returns the clerk update_product page and its data
+    View root page function that returns the clerk products page and its data
     '''
     
     return render_template('clerk/products.html')         
