@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
+
 {%block navlinks%}
 <li class="nav-item">
   <a class="nav-link active" href="#">
@@ -32,30 +32,10 @@
   </a>
 </li>
 {%endblock%}
-{%block content%}
-=======
+
 {% block content %}
->>>>>>> e782fea255cd963992c653d6fac82aa3f097b894
+
 <h2>Hello world</h2>
-<div class="btn-group dropright">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">
-    Employees
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="{{ url_for('merchant.clerks') }}">Clerks</a>
-    <a class="dropdown-item" href="{{ url_for('merchant.register') }}">New Employee</a>
-  </div>
-</div>
-<div class="btn-group dropright">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">
-    Stores
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="{{ url_for('merchant.stores') }}">Westgate Shop</a>
-  </div>
-</div>
-
-
-{% endblock %}
+<a href="{{url_for('auth.login')}}"><button>sign in as a merchant</button></a>
+<a href="{{url_for('auth.login')}}"><button>Login as a clerk</button></a>
+{%endblock%}
