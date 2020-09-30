@@ -25,3 +25,4 @@ def register():
     flash('A registration request has been sent successfully!', 'success')
     return redirect(url_for('merchant.admin'))
   return render_template('merchant/register.html', title='Register Administrator', form=form)
+
