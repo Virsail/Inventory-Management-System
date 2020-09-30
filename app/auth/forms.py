@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,BooleanField,SubmitField,ValidationError,SelectField,IntergerField 
+from wtforms import StringField,PasswordField,BooleanField,SubmitField,ValidationError,SelectField,IntegerField 
 from wtforms.validators import Required,Email,EqualTo
 from ..models import User
 
@@ -40,7 +40,7 @@ class RegistrationMerchantForm(FlaskForm):
 class RegistrationClerkForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required(),Email()])
     full_name = StringField('Enter your fullname',validators = [Required()])
-    id_number = IntergerField('Enter your ID Number',validators = [Required()])
+    id_number = IntegerField('Enter your ID Number',validators = [Required()])
     role = SelectField(u'Role', choices=[('Clerk', 'Clerk')],validators = [Required()])
     password = PasswordField('Password',validators = [Required(), EqualTo('password_confirm',message = 'Passwords must match')])
     password_confirm = PasswordField('Confirm Passwords',validators = [Required()])
