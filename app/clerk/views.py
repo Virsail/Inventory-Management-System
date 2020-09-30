@@ -84,13 +84,27 @@ def products():
 
 
 
-@clerk.route('/update/product/<product_name>')
+@clerk.route('/update/product/<product_name>',methods= ['GET','POST'])
 def update_product(product_name):
 
     '''
     View root page function that returns the clerk update product page and its data
     '''
     product=Product.query.filter_by(product_name = product_name).first()
-    
+    if request.method=='POST':
+        product_buying=request.form['product_buying']
+        product_selling=request.form['product_selling']
+        product_stock=request.form['product_stock']
+        product_spoilt=request.form['items_spoilt']
+
+        product.product_buying_price=product_buying
+        product.product_selling_price=product_selling
+        product.product_stock=product_stock
+        product.product_spoilt=product_spoilt
+
+        db.session.add(product)
+        db.session.commit()
+        flash(f'{product_name} details updated','success')
+        return redirect(url_for('clerk.products'))   
     return render_template('clerk/update_product.html',product=product)                   
 
