@@ -20,6 +20,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     role = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
+    ordersreceived = db.relationship('OrderReceived',backref = 'user',lazy = "dynamic")
     
     
     
@@ -56,3 +57,21 @@ class Product(UserMixin,db.Model):
 
     def __repr__(self):
         return f'Product {self.product_name}'
+
+
+class OrderReceived(UserMixin,db.Model):
+
+    'OrderReceived model schema'
+
+    __tablename__ = 'ordersreceived'
+
+    id = db.Column(db.Integer,primary_key = True)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    product_name = db.Column(db.String(255))
+    order_quantity = db.Column(db.Integer)
+    order_payment = db.Column(db.String(255))
+    order_total_amount = db.Column(db.Integer)
+    order_time = db.Column(db.DateTime,default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'OrderReceived {self.id}'        
