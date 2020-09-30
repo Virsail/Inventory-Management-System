@@ -71,18 +71,21 @@ def update_sales():
 
 
 @clerk.route('/products')
+@login_required
 def products():
 
     '''
     View root page function that returns the clerk products page and its data
     '''
+
+    products=Product.query.all()
     
-    return render_template('clerk/products.html')
+    return render_template('clerk/products.html',products=products)
 
 
 
-@clerk.route('/update/product')
-def update_product():
+@clerk.route('/update/product/<product_name>')
+def update_product(product_name):
 
     '''
     View root page function that returns the clerk update product page and its data
