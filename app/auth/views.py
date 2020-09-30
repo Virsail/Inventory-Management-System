@@ -22,7 +22,7 @@ def login():
     return render_template('auth/login.html',login_form = login_form,title=title)
 
 
-@auth.route('/register',methods = ["GET","POST"])
+@auth.route('/register/merchant',methods = ["GET","POST"])
 def register_merchant():
     form = RegistrationMerchantForm()
     if form.validate_on_submit():
