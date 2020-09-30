@@ -13,7 +13,7 @@ def index():
         if current_user.role=='Clerk':
             return redirect(url_for('clerk.index'))
         elif current_user.role=='Merchant':
-            return redirect(url_for('main.dashboard'))
+            return redirect(url_for('merchant.index'))
     return render_template('index.html')
 
 

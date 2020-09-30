@@ -37,7 +37,7 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <ul class="navbar-nav px-3">
+    <ul class="navbar-nav flex-column px-3">
       {% if current_user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href="#"><span class="badge badge-primary"><i class="fas fa-user"></i> {{current_user.username | capitalize}}</span>
@@ -87,11 +87,6 @@
       </div>
       {% block content %}{% endblock content %}
     </div> 
-
-  {%block navbar%}
-  {%endblock navbar%}
-
-
   
 
   <!-- JQuery -->
