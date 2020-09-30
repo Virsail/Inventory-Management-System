@@ -1,44 +1,25 @@
 {% extends 'base.html' %}
 
-{% block Styles%}
-Super()
-<link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
-{% endblock%}
+{% block styles %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
+{% endblock %}
 {%block content%}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">Add Clerk</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fa fa-fw fa-dashboard"></i>
-                    <span class="nav-link-text">Dashboard</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
 <div class="content-wrapper">
     <div class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">My Dashboard</li>
         </ol>
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-3">
                 <div class="card text-white bg-primary o-hidden h-100">
                     <div class="card-body">
                         <div class="card-body-icon">
-                            <i class="fa fa-fw fa-comments"></i>
+                            <i class="fa fa-fw fa-shopping-cart"></i>
                         </div>
-                        <div class="mr-5"><span id="message-count">26</span> New Updates</div>
+                        <div class="mr-5"> Total Sales <br><span id="message-count">Ksh 3,405,000</span></div>
                     </div>
                     <a class="card-footer text-white clearfix small z-1" href="#">
                         <span class="float-left">View Details</span>
@@ -54,7 +35,7 @@ Super()
                         <div class="card-body-icon">
                             <i class="fa fa-fw fa-shopping-cart"></i>
                         </div>
-                        <div class="mr-5">Paid Orders</div>
+                        <div class="mr-5">Total Cost<br><span id="message-count">Ksh 300,450</span></div>
                     </div>
                     <a class="card-footer text-white clearfix small z-1" href="#">
                         <span class="float-left">View Details</span>
@@ -70,7 +51,7 @@ Super()
                         <div class="card-body-icon">
                             <i class="fa fa-fw fa-shopping-cart"></i>
                         </div>
-                        <div class="mr-5"><span id="order-count">123</span> New Orders!</div>
+                        <div class="mr-5"> Total Products Sold <br><span id="order-count">12056</span></div>
                     </div>
                     <a class="card-footer text-white clearfix small z-1" href="#">
                         <span class="float-left">View Details</span>
@@ -86,7 +67,7 @@ Super()
                         <div class="card-body-icon">
                             <i class="fa fa-fw fa-shopping-cart"></i>
                         </div>
-                        <div class="mr-5">Pending Orders</div>
+                        <div class="mr-5">Available Stock<br><span id="order-count">120099</span></div>
                     </div>
                     <a class="card-footer text-white clearfix small z-1" href="#">
                         <span class="float-left">View Details</span>
@@ -101,38 +82,21 @@ Super()
             <div class="col-lg-12">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-bar-chart"></i> Revenue Chart</div>
+                        <i class="fa fa-bar-chart"></i> Revenue Graphs</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4">
                                 <!-- Example Notifications Card-->
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        <i class="fa fa-bell-o"></i> Message Feed</div>
+                                        <i class="fa fa-bell-o"></i>Revenue vs Cost</div>
                                     <div class="list-group list-group-flush small">
                                         <div id="message-box">
                                             <a class="list-group-item list-group-item-action" href="#">
                                                 <div class="media">
-                                                    <img class="d-flex mr-3 rounded-circle"
-                                                        src="http://placehold.it/45x45" alt="">
                                                     <div class="media-body">
-                                                        <strong>Jeffery Wellings</strong>added a new photo to the album
-                                                        <strong>Beach</strong>.
+                                                        <img src="../static/img/graph.png" width="300" height="200">
                                                         <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a class="list-group-item list-group-item-action" href="#">
-                                                <div class="media">
-                                                    <img class="d-flex mr-3 rounded-circle"
-                                                        src="http://placehold.it/45x45" alt="">
-                                                    <div class="media-body">
-                                                        <i class="fa fa-code-fork"></i>
-                                                        <strong>Monica Dennis</strong>forked the
-                                                        <strong>startbootstrap-sb-admin</strong>repository on
-                                                        <strong>GitHub</strong>.
-                                                        <div class="text-muted smaller">Today at 3:54 PM - 2hrs ago
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -147,31 +111,14 @@ Super()
                                 <!-- Example Notifications Card-->
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        <i class="fa fa-bell-o"></i> Message Feed</div>
+                                        <i class="fa fa-bell-o"></i> Purchases Summary</div>
                                     <div class="list-group list-group-flush small">
                                         <div id="message-box">
                                             <a class="list-group-item list-group-item-action" href="#">
                                                 <div class="media">
-                                                    <img class="d-flex mr-3 rounded-circle"
-                                                        src="http://placehold.it/45x45" alt="">
                                                     <div class="media-body">
-                                                        <strong>Jeffery Wellings</strong>added a new photo to the album
-                                                        <strong>Beach</strong>.
+                                                        <img src="../static/img/graph.png" width="300" height="200">
                                                         <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a class="list-group-item list-group-item-action" href="#">
-                                                <div class="media">
-                                                    <img class="d-flex mr-3 rounded-circle"
-                                                        src="http://placehold.it/45x45" alt="">
-                                                    <div class="media-body">
-                                                        <i class="fa fa-code-fork"></i>
-                                                        <strong>Monica Dennis</strong>forked the
-                                                        <strong>startbootstrap-sb-admin</strong>repository on
-                                                        <strong>GitHub</strong>.
-                                                        <div class="text-muted smaller">Today at 3:54 PM - 2hrs ago
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -186,31 +133,14 @@ Super()
                                 <!-- Example Notifications Card-->
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        <i class="fa fa-bell-o"></i> Message Feed</div>
+                                        <i class="fa fa-bell-o"></i> Product Units Sold</div>
                                     <div class="list-group list-group-flush small">
                                         <div id="message-box">
                                             <a class="list-group-item list-group-item-action" href="#">
                                                 <div class="media">
-                                                    <img class="d-flex mr-3 rounded-circle"
-                                                        src="http://placehold.it/45x45" alt="">
                                                     <div class="media-body">
-                                                        <strong>Jeffery Wellings</strong>added a new photo to the album
-                                                        <strong>Beach</strong>.
+                                                        <img src="../static/img/graph.png" width="300" height="200">
                                                         <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a class="list-group-item list-group-item-action" href="#">
-                                                <div class="media">
-                                                    <img class="d-flex mr-3 rounded-circle"
-                                                        src="http://placehold.it/45x45" alt="">
-                                                    <div class="media-body">
-                                                        <i class="fa fa-code-fork"></i>
-                                                        <strong>Monica Dennis</strong>forked the
-                                                        <strong>startbootstrap-sb-admin</strong>repository on
-                                                        <strong>GitHub</strong>.
-                                                        <div class="text-muted smaller">Today at 3:54 PM - 2hrs ago
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -227,124 +157,129 @@ Super()
                 </div>
             </div>
         </div>
-
-        
-
-
-
-
-
-
-        <!-- Example DataTables Card-->
-        <div class="col-lg-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fa fa-table"></i> Clerks Record</div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </tfoot>
-                            <tbody id="customer-table">
-                                <tr>
-                                    <td>Dennis Kamunya</td>
-                                    <td>Senior Clerk</td>
-                                    <td>Nairobi</td>
-                                    <td>38</td>
-                                    <td>2020/03/29</td>
-                                    <td>Ksh 37,060</td>
-                                </tr>
-                                <tr>
-                                    <td>George Kilewa</td>
-                                    <td>Junior Clerk</td>
-                                    <td>Nairobi</td>
-                                    <td>33</td>
-                                    <td>2020/11/28</td>
-                                    <td>Ksh 32,700</td>
-                                </tr>
-                            </tbody>
-                        </table>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-bar-chart"></i> ORDERS</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Example DataTables Card-->
+                            <div class="col-lg-7">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <i class="fa fa-table"></i> Sales Orders</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%"
+                                                cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order Id</th>
+                                                        <th>Customer</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                        <th>Order Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="customer-table">
+                                                    <tr>
+                                                        <td>OR1024</td>
+                                                        <td>George Kilewa</td>
+                                                        <td>30 Sep 2020</td>
+                                                        <td><button class="btn-danger">Cancelled</button></td>
+                                                        <td>Ksh 30000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>OR1024</td>
+                                                        <td>George Kilewa</td>
+                                                        <td>30 Sep 2020</td>
+                                                        <td><button class="btn-success">Approved</button></td>
+                                                        <td>Ksh 30000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>OR1024</td>
+                                                        <td>George Kilewa</td>
+                                                        <td>30 Sep 2020</td>
+                                                        <td><button class="btn-success">Approved</button></td>
+                                                        <td>Ksh 30000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>OR1024</td>
+                                                        <td>George Kilewa</td>
+                                                        <td>30 Sep 2020</td>
+                                                        <td><button class="btn-info">Pending</button></td>
+                                                        <td>Ksh 30000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <i class="fa fa-table"></i> Purchase Orders</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%"
+                                                cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order ID</th>
+                                                        <th>Amount</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>PO001</td>
+                                                        <td>Ksh 20000</td>
+                                                        <td><button class="btn-info">Pending</button></td>
+                                                    </tr>
+                                                </tfoot>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>PO002</td>
+                                                        <td>Ksh 20600</td>
+                                                        <td><button class="btn-success">Approved</button></td>
+                                                    </tr>
+                                                </tfoot>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>PO004</td>
+                                                        <td>Ksh 45000</td>
+                                                        <td><button class="btn-success">Approved</button></td>
+                                                    </tr>
+                                                </tfoot>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>PO005</td>
+                                                        <td>Ksh 40000</td>
+                                                        <td><button class="btn-success">Approved</button></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fa fa-table"></i> Clerks Record</div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </tfoot>
-                            <tbody id="customer-table">
-                                <tr>
-                                    <td>Dennis Kamunya</td>
-                                    <td>Senior Clerk</td>
-                                    <td>Nairobi</td>
-                                    <td>38</td>
-                                    <td>2020/03/29</td>
-                                    <td>Ksh 37,060</td>
-                                </tr>
-                                <tr>
-                                    <td>George Kilewa</td>
-                                    <td>Junior Clerk</td>
-                                    <td>Nairobi</td>
-                                    <td>33</td>
-                                    <td>2020/11/28</td>
-                                    <td>Ksh 32,700</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-        </div>    
-    </div>
-    <footer class="sticky-footer">
-        <div class="container">
-            <div class="text-center">
-                <small style="color: #fff;">Copyright © Inventory Management System 2020.</small>
             </div>
         </div>
-    </footer>
-</div>
+        <footer class="footer" style="color: wheat; margin-bottom: auto;">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Inventory Management System 2020.</small>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 {%endblock%}
