@@ -55,6 +55,10 @@ class Product(UserMixin,db.Model):
     product_buying_price = db.Column(db.Integer)
     product_selling_price = db.Column(db.Integer)
 
+
+    def save_product(self):
+        db.session.add(self)
+        db.session.commit()
     def __repr__(self):
         return f'Product {self.product_name}'
 
@@ -72,6 +76,11 @@ class OrderReceived(UserMixin,db.Model):
     order_payment = db.Column(db.String(255))
     order_total_amount = db.Column(db.Integer)
     order_time = db.Column(db.DateTime,default=datetime.utcnow)
+
+
+    def save_order(self):
+        db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return f'OrderReceived {self.id}'        
