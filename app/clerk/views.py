@@ -90,6 +90,7 @@ def update_product(product_name):
     '''
     View root page function that returns the clerk update product page and its data
     '''
+    product=Product.query.filter_by(product_name = product_name).first()
     
-    return render_template('clerk/update_product.html')                   
+    return render_template('clerk/update_product.html',product=product)                   
 
