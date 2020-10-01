@@ -3,6 +3,6 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Email
 
 
-class MerchantRegistrationForm(FlaskForm):
+class ClerkRegistrationForm(FlaskForm):
   email = StringField('Email', validators=[DataRequired(), Email()])
   submit = SubmitField('Send Request')

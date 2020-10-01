@@ -3,37 +3,39 @@
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/merchant.css') }}">
 {% endblock styles %}
+
 {%block navlinks%}
 <li class="nav-item">
-  <a class="nav-link active" href="">
+  <a class="nav-link" href="{{url_for('merchant.index')}}">
     <i class="fas fa-columns"></i>
-    Dashboard <span class="sr-only">(current)</span>
+    Dashboard
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link active" href="{{ url_for('merchant.clerks') }}">
+  <a class="nav-link" href="{{url_for('merchant.clerks')}}">
     <i class="fas fa-columns"></i>
-    Employees <span class="sr-only">(current)</span>
+    Clerks
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link active" href="{{ url_for('merchant.stores') }}">
+  <a class="nav-link" href="{{url_for('merchant.stores')}}">
     <i class="fas fa-columns"></i>
-    Stores <span class="sr-only">(current)</span>
+    Store Reports
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link active" href="#">
+  <a class="nav-link" href="">
     <i class="fas fa-columns"></i>
-    Dashboard <span class="sr-only">(current)</span>
+    Products Requests
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link active" href="#">
+  <a class="nav-link" href="">
     <i class="fas fa-columns"></i>
-    Dashboard <span class="sr-only">(current)</span>
+    Orders Payment Status
   </a>
 </li>
+
 {%endblock%}
 {% block content %}
 <div class="merchant-page">
@@ -45,7 +47,7 @@
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="{{ url_for('merchant.clerks') }}">Clerks</a>
-        <a class="dropdown-item" href="{{ url_for('merchant.register') }}">New Employee</a>
+        <a class="dropdown-item" href="{{ url_for('merchant.register_request') }}">New Employee</a>
       </div>
     </div>
     <div class="row mt-4">
