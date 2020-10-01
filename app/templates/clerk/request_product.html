@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{%block navlinks%}
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('clerk.index')}}">
+    <i class="fas fa-columns"></i>
+    Inventory 
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="{{url_for('clerk.update_sales')}}">
+    <i class="fas fa-columns"></i>
+    Update Sales <span class="sr-only">(current)</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('clerk.products')}}">
+    <i class="fas fa-columns"></i>
+    Update products 
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('clerk.my_sales')}}">
+    <i class="fas fa-columns"></i>
+    My Sales
+  </a>
+</li>
+{%endblock%}
+{%block content%}
+<div class="card mt-5">
+  <div class="card-header card-header-primary text-center">
+    <h4 class="card-title">Make Product Request for {{product.product_name}}</h4>
+  </div>
+  <div class="card-body">
+    <form action="" method="post">
+   
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="bmd-label-floating">Request Quantity</label>
+            <input type="number" name="request_quantity" class="form-control" placeholder="Request Quantity" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right text-center">Make Request</button>
+          </div>
+        </div>
+      </div>
+     
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</div>
+{%endblock%}

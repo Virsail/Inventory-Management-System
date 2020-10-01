@@ -1,7 +1,7 @@
 from flask import render_template,abort,request,redirect,url_for,flash
 from . import clerk
 from flask_login import login_required,current_user
-from ..models import Product,OrderReceived,Sale
+from ..models import Product,OrderReceived,Sale,ProductRequest
 from .. import db
 # Views
 @clerk.route('/',methods= ['GET','POST'])
@@ -119,4 +119,20 @@ def my_sales():
     sales=Sale.query.filter_by(user_id=current_user.id).order_by(Sale.sale_time.desc()).all()      
     return render_template('clerk/sales.html',sales=sales)
 
+
+@clerk.route('/request/product/<product_name>',methods= ['GET','POST'])
+@login_required
+def request_product(product_name):
+
+    '''
+    View request product page function that returns the form to make a product request
+    '''
+    product=Product.query.filter_by(product_name = product_name).first()
+    if request.method=='POST':
+       req_quantity=request.form['request_quantity'] 
+       new_request=ProductRequest(product_id=product.id,user_id=current_user.id,request_quantity=req_quantity)
+       new_request.save_request()
+       flash(f'Request for {req_quantity} {product_name}  has been made','success')
+       return redirect(url_for('clerk.request_product',product_name=product_name))   
+    return render_template('clerk/request_product.html',product=product)
 
