@@ -2,7 +2,8 @@ from . import merchant
 from flask import render_template, url_for, flash, redirect
 from flask_login import login_required,current_user
 from .forms import MerchantRegistrationForm
-
+from ..models import Product,OrderReceived,Sale,ProductRequest,User
+from .. import db
 @merchant.route('/')
 @login_required
 def index():
@@ -12,7 +13,10 @@ def index():
 @merchant.route('/clerks')
 @login_required
 def clerks():
-  return render_template('merchant/merchant_home.html')
+
+  clerks=User.query.filter_by(role='Clerk').all()
+  
+  return render_template('merchant/merchant_home.html',clerks=clerks)
 
 
 
