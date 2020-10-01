@@ -11,12 +11,14 @@ def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
-        if user is not None and user.verify_password(login_form.password.data):
+        if user is not None and user.verify_password(login_form.password.data) and user.status='Active':
             login_user(user,login_form.remember.data)
             
             return redirect(request.args.get('next') or url_for('main.index'))
-
-        flash('Invalid username or Password')
+        elif user is not None and user.verify_password(login_form.password.data) and user.status='Inactive':
+            flash('Account Deactivated Please contact your merchant')    
+        else:
+            flash('Invalid username or Password')
 
     title = "User login"
     return render_template('auth/login.html',login_form = login_form,title=title)
