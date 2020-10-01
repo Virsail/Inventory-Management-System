@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block styles %}
 {{super()}}
 <link href="{{ url_for('static', filename='css/homepage.css') }}" rel="stylesheet">
@@ -8,9 +9,9 @@
 {%endblock%}
 
 {% block content %}
-<div class="homepage">
-  <h2>Hello world</h2>
-  <a href="{{url_for('auth.login')}}"><button>sign in as a merchant</button></a>
-  <a href="{{url_for('auth.login')}}"><button>Login as a clerk</button></a>
+<div class="homepage text-center">
+
+  <a href="{{url_for('auth.login')}}"><button type="button" class="btn btn-primary text-center">Sign in as Merchant</button></a>
+  <a href="{{url_for('auth.login')}}"><button  type="button" class="btn btn-primary text-center">Sign in as Clerk</button></a>
 </div>
 {%endblock%}

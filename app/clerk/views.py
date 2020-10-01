@@ -54,8 +54,8 @@ def update_sales():
         quantity_sold=int(request.form['quantity_sold'])
         
         product = Product.query.filter_by(product_name = product_name).first()
-        if product.product_stock<quantity_sold:
-            flash(f'Sorry could not add sale.Stock is {product.product_stock}','danger')
+        if (product.product_stock-product.product_spoilt)<quantity_sold:
+            flash(f'Sorry could not add sale.Stock is {product.product_stock-product.product_spoilt}','danger')
             return redirect(url_for('clerk.update_sales'))
         else:
             total_sale=product.product_selling_price*quantity_sold

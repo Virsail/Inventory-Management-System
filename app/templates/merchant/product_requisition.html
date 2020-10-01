@@ -1,5 +1,37 @@
 {% extends 'base.html' %}
+{%block navlinks%}
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('merchant.index')}}">
+        <i class="fas fa-columns"></i>
+        Dashboard
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('merchant.clerks')}}">
+        <i class="fas fa-columns"></i>
+        Clerks
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('merchant.stores')}}">
+        <i class="fas fa-columns"></i>
+        Store Reports
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" href="{{url_for('merchant.product_requisition')}}">
+        <i class="fas fa-columns"></i>
+        Products Requests
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('merchant.order_payment_status')}}">
+        <i class="fas fa-columns"></i>
+        Orders Payment Status
+    </a>
+</li>
 
+{%endblock%}
 {% block styles %}
 {{super()}}
 <link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
@@ -20,57 +52,64 @@
                             <div class="card-header">
                                 <i class="fa fa-table"></i> Purchase Orders Requisition</div>
                             <div class="card-body">
+                                {%if prod_requests%}
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%"
                                         cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Order ID</th>
-                                                <th>Customer</th>
+                                                <th>Request ID</th>
+                                                <th>Clerk Name</th>
+                                                <th>Product Name</th>
+                                                <th>Request Quantity</th>
+                                                <th>Request Status</th>
                                                 <th>Date</th>
-                                                <th>Status</th>
-                                                <th>Order Total</th>
+                                                <th></th>
+                                                <th></th>                                                
                                             </tr>
                                         </thead>
                                         <tbody id="customer-table">
+                                            {%for prod_request in prod_requests%}
                                             <tr>
-                                                <td>OR1024</td>
-                                                <td>George Kilewa</td>
-                                                <td>30 Sep 2020</td>
-                                                <td><button class="btn-danger">Cancelled</button></td>
-                                                <td>Ksh 30000</td>
+                                                <td>{{prod_request.id}}</td>
+                                                <td>{{prod_request.user.username}}</td>
+                                                <td>{{prod_request.product.product_name}}</td>
+                                                <td>{{prod_request.request_quantity}}</td>
+                                                
+                                                {%if prod_request.request_status=='Pending'%}
+                                                <td><span class="badge badge-pill badge-primary">{{prod_request.request_status}}</span></td>
+                                                {%elif prod_request.request_status=='Approved'%}
+                                                <td><span class="badge badge-pill badge-success">{{prod_request.request_status}}</span></td>
+                                                {%else%}
+                                                <td><span class="badge badge-pill badge-danger">{{prod_request.request_status}}</span></td>
+                                                {%endif%}
+                                                
+                                                  
+                                                <td>{{prod_request.request_time}}</td>
+                                                {%if prod_request.request_status=='Pending'%}
+                                                <td> <a href="{{url_for('merchant.approve_request',action='Approve',product_name=prod_request.product.product_name,prod_req_id=prod_request.id)}}"><button type="button" class="btn-sm btn-success">Approve</button></a> </td>
+                                                <td> <a href="{{url_for('merchant.approve_request',action='Cancel',product_name=prod_request.product.product_name,prod_req_id=prod_request.id)}}"><button type="button" class="btn-sm btn-danger">Cancel</button></a> </td>
+                                                {%endif%}
+                                               
                                             </tr>
-                                            <tr>
-                                                <td>OR1024</td>
-                                                <td>George Kilewa</td>
-                                                <td>30 Sep 2020</td>
-                                                <td><button class="btn-success">Approved</button></td>
-                                                <td>Ksh 30000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>OR1024</td>
-                                                <td>George Kilewa</td>
-                                                <td>30 Sep 2020</td>
-                                                <td><button class="btn-success">Approved</button></td>
-                                                <td>Ksh 30000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>OR1024</td>
-                                                <td>George Kilewa</td>
-                                                <td>30 Sep 2020</td>
-                                                <td><button class="btn-info">Pending</button></td>
-                                                <td>Ksh 30000</td>
-                                            </tr>
+                                            {%endfor%}
                                         </tbody>
                                     </table>
                                 </div>
+                                {%else%}
+                                <div class="container text-center">
+                                    <div style="margin-top: 100px" class="alert alert-danger" role="alert">
+                                      <h4 class="alert-heading"><i class="far fa-surprise fa-lg"></i>No requests maded</h4>
+                                      <hr>
+                                    </div>
+                                  </div>
+                                {%endif%}
                             </div>
                             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
     </div>
 </div>

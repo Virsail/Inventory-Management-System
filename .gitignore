@@ -1,5 +1,6 @@
 virtual/
 *.pyc
 instance/
+env/
 venv/
 start.sh

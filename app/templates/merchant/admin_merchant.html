@@ -3,38 +3,6 @@
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/merchant.css') }}">
 {% endblock styles %}
-{%block navlinks%}
-<li class="nav-item">
-  <a class="nav-link" href="{{url_for('merchant.index')}}">
-    <i class="fas fa-columns"></i>
-    Dashboard
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="{{url_for('merchant.clerks')}}">
-    <i class="fas fa-columns"></i>
-    Clerks
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="{{url_for('merchant.stores')}}">
-    <i class="fas fa-columns"></i>
-    Store Reports
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="{{url_for('merchant.product_requisition')}}">
-    <i class="fas fa-columns"></i>
-    Products Requests
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="{{url_for('merchant.order_payment_status')}}">
-    <i class="fas fa-columns"></i>
-    Orders Payment Status
-  </a>
-</li>
-{%endblock%}
 {% block content %}
 <div class="container">
   <div class="card details mb-3">
@@ -52,6 +20,9 @@
         </li>
         <li class="list-group-item">
           <h5>ID Number :</h5>
+        </li>
+        <li class="list-group-item">
+          <h5>Age :</h5>
         </li>
         <li class="list-group-item">
           <h5>Store Branch :</h5>
