@@ -20,10 +20,13 @@ def clerks():
 
 
 
-@merchant.route('/administrators/administrator')
+@merchant.route('/clerk/<clerk_name>')
 @login_required
-def clerk_name():
-  return render_template('merchant/admin_merchant.html')
+def clerk_details(clerk_name):
+
+  clerk=User.query.filter_by(role='Clerk',username=clerk_name).first()
+ 
+  return render_template('merchant/clerk_details.html',clerk=clerk)
 
 
 @merchant.route('/stores')

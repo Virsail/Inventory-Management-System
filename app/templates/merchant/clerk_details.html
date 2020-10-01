@@ -11,7 +11,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="{{url_for('merchant.clerks')}}">
+  <a class="nav-link active" href="{{url_for('merchant.clerks')}}">
     <i class="fas fa-columns"></i>
     Clerks
   </a>
@@ -40,7 +40,7 @@
   <div class="card details mb-3">
     <div class="card-header">
       <div class="image d-flex">
-        <img class="rounded-circle account-img" src="{{ url_for('static', filename='img/default.jpg') }}" alt="">
+        <img class="rounded-circle account-img" src="{{ url_for('static', filename=clerk.profile_pic_path) }}" alt="">
         <h2 class="align-items-center ml-3 mt-5">Clerk</h2>
       </div>
     </div>
@@ -48,13 +48,17 @@
       <h4 class="card-title">Personal Details</h4>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <h5>Name :</h5>
+          <h5>Fullname: {{clerk.username}}</h5>
+        </li>
+        
+        <li class="list-group-item">
+          <h5>Email : {{clerk.email}}</h5>
         </li>
         <li class="list-group-item">
-          <h5>ID Number :</h5>
+          <h5>Role : {{clerk.role}}</h5>
         </li>
         <li class="list-group-item">
-          <h5>Store Branch :</h5>
+          <h5>Account Status : <span class="badge badge-success">{{clerk.status}}</span></h5>
         </li>
       </ul>
     </div>
