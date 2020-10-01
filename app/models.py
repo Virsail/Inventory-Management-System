@@ -22,6 +22,7 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
     ordersreceived = db.relationship('OrderReceived',backref = 'user',lazy = "dynamic")
     sales = db.relationship('Sale',backref = 'user',lazy = "dynamic")
+    productrequests = db.relationship('ProductRequest',backref = 'user',lazy = "dynamic")
     
     
     
@@ -55,7 +56,7 @@ class Product(db.Model):
     product_spoilt = db.Column(db.Integer,default = 0)
     product_buying_price = db.Column(db.Integer)
     product_selling_price = db.Column(db.Integer)
-
+    productrequests = db.relationship('ProductRequest',backref = 'product',lazy = "dynamic")
 
     def save_product(self):
         db.session.add(self)
@@ -106,4 +107,27 @@ class Sale(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'Sale of {self.product_name}'                
+        return f'Sale of {self.product_name}'      
+
+
+
+class ProductRequest(db.Model):
+
+    'ProductRequest model schema'
+
+    __tablename__ = 'productrequests'
+
+    id = db.Column(db.Integer,primary_key = True)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    product_id = db.Column(db.Integer,db.ForeignKey("products.id"))
+    request_quantity = db.Column(db.Integer)
+    request_status=db.Column(db.String(255),default='Pending')
+    request_time = db.Column(db.DateTime,default=datetime.utcnow)
+
+
+    def save_request(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'Request of {self.product.product_name}'                   
