@@ -28,7 +28,7 @@ def login():
 def register_merchant():
     form = RegistrationMerchantForm()
     if form.validate_on_submit():
-        user = User(email = form.email.data, role = form.role.data,username = form.username.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
+        user = User(email = form.email.data, role = form.role.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
         db.session.add(user)
         db.session.commit()
 

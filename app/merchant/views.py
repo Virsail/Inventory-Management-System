@@ -26,6 +26,19 @@ def stores():
 def store_reports(store_name):
   return render_template('merchant/store_reports.html')
 
+@merchant.route('/product_requisition')
+def product_requisition():
+	return render_template('merchant/product_requisition.html')	
+
+
+@merchant.route('/order_payment_status')
+def order_payment_status():
+	return render_template('merchant/order_payment_status.html')	
+
+
+
+
+
 
 
 @merchant.route('/register', methods=['GET', 'POST'])

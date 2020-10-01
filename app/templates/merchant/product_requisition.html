@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+{{super()}}
+<link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-bar-chart"></i> ORDERS</div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Example DataTables Card-->
+                    <div class="col-lg-12">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <i class="fa fa-table"></i> Purchase Orders Requisition</div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%"
+                                        cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Customer</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Order Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="customer-table">
+                                            <tr>
+                                                <td>OR1024</td>
+                                                <td>George Kilewa</td>
+                                                <td>30 Sep 2020</td>
+                                                <td><button class="btn-danger">Cancelled</button></td>
+                                                <td>Ksh 30000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>OR1024</td>
+                                                <td>George Kilewa</td>
+                                                <td>30 Sep 2020</td>
+                                                <td><button class="btn-success">Approved</button></td>
+                                                <td>Ksh 30000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>OR1024</td>
+                                                <td>George Kilewa</td>
+                                                <td>30 Sep 2020</td>
+                                                <td><button class="btn-success">Approved</button></td>
+                                                <td>Ksh 30000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>OR1024</td>
+                                                <td>George Kilewa</td>
+                                                <td>30 Sep 2020</td>
+                                                <td><button class="btn-info">Pending</button></td>
+                                                <td>Ksh 30000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
