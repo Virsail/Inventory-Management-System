@@ -63,7 +63,13 @@
       </ul>
     </div>
     <div class="card-footer">
-      <a class="btn btn-info" href="">Deactivate Account</a>
+      
+        {%if clerk.status=='Active'%}
+        <a class="btn btn-danger" href="{{url_for('merchant.update_status',clerk_name=clerk.username)}}">Deactivate</a>
+        {%else%}
+        <a class="btn btn-success" href="{{url_for('merchant.update_status',clerk_name=clerk.username)}}">Activate</a>
+        {%endif%}
+        
       <button type="submit" class="btn btn-danger">Delete Account</button>
     </div>
   </div>

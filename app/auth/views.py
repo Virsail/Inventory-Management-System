@@ -16,7 +16,7 @@ def login():
             
             return redirect(request.args.get('next') or url_for('main.index'))
         elif user is not None and user.verify_password(login_form.password.data) and user.status=='Inactive':
-            flash('Account Deactivated Please contact your merchant')    
+            flash('Your Account is Inactive. Please contact your employer')    
         else:
             flash('Invalid username or Password')
 
