@@ -9,7 +9,45 @@ from .. import db
 @merchant.route('/')
 @login_required
 def index():
-    print(current_user)
+    
+    products=Product.query.all()
+    sales=Sale.query.all()
+    orders=OrderReceived.query.all()
+    prod_requests=ProductRequest.query.all()
+
+    items_sold=0
+    stock=0
+    spoilt=0
+    sales_revenue=0
+    orders_cost=0
+    restock_requests=0
+
+    stock_list=[]
+    spoilt_list=[]
+    sales_list=[]
+    orders_cost_list=[]
+    items_sold_list=[]
+    if products:
+        for product in products:
+            stock_list.append(product.product_stock)
+            spoilt_list.append(product.product_spoilt)
+        stock=sum(stock_list)
+        spoilt=sum(spoilt_list)
+    if sales:
+        for sale in sales:
+            sales_list.append(sale.sale_amount)
+            items_sold_list.append(sale.sale_quantity)
+        sales_revenue=sum(sales_list) 
+        items_sold=sum(items_sold_list)        
+    if orders:
+        for order in orders:
+            orders_cost_list.append(order.order_total_amount)
+        orders_cost=sum(orders_cost_list) 
+    if prod_requests:
+        restock_requests=len(prod_requests)
+
+    
+    
     return render_template('merchant/dashboard.html')
 
 
@@ -34,13 +72,57 @@ def clerk_details(clerk_name):
 @merchant.route('/stores')
 @login_required
 def stores():
-    return render_template('merchant/stores.html')
+    products=Product.query.all()
+    sales=Sale.query.all()
+    orders=OrderReceived.query.all()
+    prod_requests=ProductRequest.query.all()
 
+    items_sold=0
+    stock=0
+    spoilt=0
+    sales_revenue=0
+    orders_cost=0
+    restock_requests=0
 
-@merchant.route('/store/reports/<store_name>')
-@login_required
-def store_reports(store_name):
-    return render_template('merchant/store_reports.html')
+    stock_list=[]
+    spoilt_list=[]
+    sales_list=[]
+    orders_cost_list=[]
+    items_sold_list=[]
+    if products:
+        for product in products:
+            stock_list.append(product.product_stock)
+            spoilt_list.append(product.product_spoilt)
+        stock=sum(stock_list)
+        spoilt=sum(spoilt_list)
+    if sales:
+        for sale in sales:
+            sales_list.append(sale.sale_amount)
+            items_sold_list.append(sale.sale_quantity)
+        sales_revenue=sum(sales_list) 
+        items_sold=sum(items_sold_list)        
+    if orders:
+        for order in orders:
+            orders_cost_list.append(order.order_total_amount)
+        orders_cost=sum(orders_cost_list) 
+    if prod_requests:
+        restock_requests=len(prod_requests)
+        
+
+    reports = {
+    "products": products,
+    "sales": sales,
+    "orders": orders,
+    "prod_requests":prod_requests,
+    "items_sold":items_sold,
+    "stock":stock,
+    "spoilt":spoilt,
+    "sales_revenue":sales_revenue,
+    "orders_cost":orders_cost,
+    "restock_requests":restock_requests
+    }    
+    return render_template('merchant/store_reports.html',reports=reports)
+
 
 
 @merchant.route('/product_requisition')
