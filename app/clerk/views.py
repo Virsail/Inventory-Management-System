@@ -133,6 +133,18 @@ def request_product(product_name):
        new_request=ProductRequest(product_id=product.id,user_id=current_user.id,request_quantity=req_quantity)
        new_request.save_request()
        flash(f'Request for {req_quantity} {product_name}  has been made','success')
-       return redirect(url_for('clerk.request_product',product_name=product_name))   
+       return redirect(url_for('clerk.my_requests'))   
     return render_template('clerk/request_product.html',product=product)
+
+
+@clerk.route('/myrequests')
+@login_required         
+def my_requests():
+    '''
+    View my request page function that returns the requests page and its data
+    '''
+    requests=ProductRequest.query.filter_by(user_id=current_user.id).order_by(ProductRequest.request_time.desc()).all()      
+    return render_template('clerk/requests.html',requests=requests)    
+
+
 
