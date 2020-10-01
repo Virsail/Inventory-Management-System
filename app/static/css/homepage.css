@@ -1,11 +1,77 @@
-
-.homepage{
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url("../imgs/bg.jpg")no-repeat center center;
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: #121618;
+  font-size: 15px;
+  line-height: 1.8;
+  box-sizing: border-box;
+  font-weight: 300;
+  text-align: center;
+  background: url(../img/body-bg.jpg) no-repeat fixed;
   background-size: cover;
-  min-height: 90vh;
-  width: 100%;
-  overflow: hidden;
-  display: block;
-  font-size: 100%;
-
 }
+nav{
+  background-color: black;
+}
+.navbar-brand,h1,h2,h3{
+  font-family: "Josefin Sans", Arial, sans-serif;
+}
+.navbar-brand small{
+  text-transform: uppercase;
+  font-size: 11px;
+  display: block;
+  text-align: center;
+  letter-spacing: 4px;
+}
+#home{
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../imgs/bg.jpg) no-repeat center;
+  background-size: cover;
+  width: 100%;
+  min-height: 110vh;
+}
+.banner{
+  width: 90%;
+  margin: auto;
+  padding-top: 15%;
+}
+.banner .heading{
+  font-family: "Nothing You Could Do", cursive;
+  font-size: 30px;
+  color: #fac564;
+}
+.banner .btn-primary{
+  background: #fac564;
+  border: 1px solid #fac564;
+  color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
