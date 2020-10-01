@@ -69,6 +69,19 @@ def update_status(clerk_name):
     return redirect(url_for('merchant.clerk_details', clerk_name=clerk_name))
 
 
+
+
+@merchant.route('/delete_clerk/<clerk_name>')
+@login_required
+def delete_clerk(clerk_name):
+    clerk = User.query.filter_by(role='Clerk', username=clerk_name).first()
+    db.session.delete(clerk)
+    db.session.commit()
+   
+    flash(f'Account for {clerk_name} Deleted', 'danger')
+    return redirect(url_for('merchant.clerks'))    
+
+
 @merchant.route('/register', methods=['GET', 'POST'])
 def register():
     form = MerchantRegistrationForm()

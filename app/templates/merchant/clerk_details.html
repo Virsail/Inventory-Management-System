@@ -70,7 +70,7 @@
         <a class="btn btn-success" href="{{url_for('merchant.update_status',clerk_name=clerk.username)}}">Activate</a>
         {%endif%}
         
-      <button type="submit" class="btn btn-danger">Delete Account</button>
+      <a href="{{url_for('merchant.delete_clerk',clerk_name=clerk.username)}}"><button type="submit" class="btn btn-danger">Delete Account</button></a> 
     </div>
   </div>
   {% endblock content %}
