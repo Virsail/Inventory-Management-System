@@ -84,7 +84,20 @@ def delete_clerk(clerk_name):
     db.session.commit()
    
     flash(f'Account for {clerk_name} Deleted', 'danger')
-    return redirect(url_for('merchant.clerks'))    
+    return redirect(url_for('merchant.clerks'))   
+
+
+@merchant.route('/pay_order/<order_id>')
+@login_required
+def pay_order(order_id):
+    order=OrderReceived.query.get(order_id)
+    order.order_payment='Paid'
+    db.session.add(order)
+    db.session.commit()
+   
+    flash(f'Order for {order.product_name} Paid', 'success')
+    return redirect(url_for('merchant.order_payment_status'))       
+
 
 
 @merchant.route('/approve_request/<action>/<product_name>/<prod_req_id>')
@@ -99,10 +112,12 @@ def approve_request(action,product_name,prod_req_id):
       db.session.add(prod_req)
       db.session.add(product)
       db.session.commit()
+      flash(f'{product.product_name} order approved','success')
     else:
       prod_req.request_status='Declined'
       db.session.add(prod_req)  
       db.session.commit()
+      flash(f'{product.product_name} order declined','danger')
 
     return redirect(url_for('merchant.product_requisition'))  
 

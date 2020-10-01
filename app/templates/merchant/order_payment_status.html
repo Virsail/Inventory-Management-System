@@ -80,7 +80,7 @@
                                                 <td>{{order.order_total_amount}}</td>
                                                 <td>{{order.order_time}}</td>
                                                 {%if order.order_payment!='Paid'%}
-                                                <td><a href=""><h3><span class="badge badge-primary">PAY</span></h3> </a> </td>
+                                                <td><a href="{{url_for('merchant.pay_order',order_id=order.id)}}"><h5><span class="badge badge-primary">PAY</span></h5> </a> </td>
                                                 {%endif%}
                                             </tr>
                                         </tfoot>
