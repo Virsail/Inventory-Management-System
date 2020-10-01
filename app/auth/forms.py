@@ -10,8 +10,6 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember me')
     submit = SubmitField('Sign In')   
 
-
-
 class RegistrationMerchantForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required(),Email()])
     
@@ -34,31 +32,6 @@ class RegistrationMerchantForm(FlaskForm):
         checks to see if the username is unique and raises a ValidationError if another user with a similar username is found.
         '''
         if User.query.filter_by(username = data_field.data).first():
-            raise ValidationError('That username is taken')     
-
-
-class RegistrationClerkForm(FlaskForm):
-    email = StringField('Your Email Address',validators=[Required(),Email()])
-    full_name = StringField('Enter your fullname',validators = [Required()])
-    role = SelectField(u'Role', choices=[('Clerk', 'Clerk')],validators = [Required()])
-    password = PasswordField('Password',validators = [Required(), EqualTo('password_confirm',message = 'Passwords must match')])
-    password_confirm = PasswordField('Confirm Passwords',validators = [Required()])
-    submit = SubmitField('Sign Up')
-
-
-
-    def validate_email(self,data_field):
-              '''
-              takes in the data field and checks our database to confirm there is no user registered with that email address
-              '''
-              if User.query.filter_by(email =data_field.data).first():
-                  raise ValidationError('There is an account with that email')
-
-    def validate_username(self,data_field):
-        '''
-        checks to see if the username is unique and raises a ValidationError if another user with a similar username is found.
-        '''
-        if User.query.filter_by(username = data_field.data).first():
-            raise ValidationError('That username is taken')     
+            raise ValidationError('That username is taken')  
 
 

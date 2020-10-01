@@ -3,7 +3,7 @@ from . import auth
 from ..models import User
 from .. import db
 from flask_login import login_user,logout_user,login_required
-from .forms import LoginForm,RegistrationMerchantForm,RegistrationClerkForm
+from .forms import LoginForm,RegistrationMerchantForm
 
 
 @auth.route('/login',methods=['GET','POST'])
@@ -32,20 +32,20 @@ def register_merchant():
 
         return redirect(url_for('auth.login'))
         title = "New Account"
-    return render_template('auth/register_merchant.html',registration_form = form, title=title)
+    return render_template('auth/register_merchant.html',registration_form = form)
 
 
-@auth.route('/register/clerk',methods = ["GET","POST"])
-def register_clerk():
-    form = RegistrationClerkForm()
-    if form.validate_on_submit():
-        user = User(email = form.email.data, role = form.role.data,username = form.full_name.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
-        db.session.add(user)
-        db.session.commit()
+# @auth.route('/register/clerk',methods = ["GET","POST"])
+# def register_clerk():
+#     form = RegistrationClerkForm()
+#     if form.validate_on_submit():
+#         user = User(email = form.email.data, role = form.role.data,username = form.full_name.data,password = form.password.data,profile_pic_path= 'photos/unknown.png')
+#         db.session.add(user)
+#         db.session.commit()
 
-        return redirect(url_for('auth.login'))
+#         return redirect(url_for('auth.login'))
         
-    return render_template('auth/register_clerk.html',registration_form = form)         
+#     return render_template('auth/register_clerk.html',registration_form = form)         
 
 
 
