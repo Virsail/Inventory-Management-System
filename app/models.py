@@ -19,6 +19,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
     profile_pic_path = db.Column(db.String())
     role = db.Column(db.String(255))
+    status=db.Column(db.String(255),default='Active')
     pass_secure = db.Column(db.String(255))
     ordersreceived = db.relationship('OrderReceived',backref = 'user',lazy = "dynamic")
     sales = db.relationship('Sale',backref = 'user',lazy = "dynamic")
