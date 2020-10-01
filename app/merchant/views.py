@@ -55,7 +55,9 @@ def product_requisition():
 @merchant.route('/order_payment_status')
 @login_required
 def order_payment_status():
-    return render_template('merchant/order_payment_status.html')
+
+    orders=OrderReceived.query.all()
+    return render_template('merchant/order_payment_status.html',orders=orders)
 
 
 @merchant.route('/update_status/<clerk_name>')
