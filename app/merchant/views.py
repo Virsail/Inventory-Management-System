@@ -85,6 +85,25 @@ def delete_clerk(clerk_name):
     return redirect(url_for('merchant.clerks'))    
 
 
+@merchant.route('/approve_request/<action>/<product_name>/<prod_req_id>')
+@login_required
+def approve_request(action,product_name,prod_req_id):
+    
+    prod_req=ProductRequest.query.get(prod_req_id)
+    product = Product.query.filter_by(product_name = product_name).first()
+    if action=='Approve':
+      prod_req.request_status='Approved'
+      product.product_stock=product.product_stock+prod_req.request_quantity
+      db.session.add(prod_req)
+      db.session.add(product)
+      db.session.commit()
+    else:
+      prod_req.request_status='Declined'
+      db.session.add(prod_req)  
+      db.session.commit()
+
+    return redirect(url_for('merchant.product_requisition'))  
+
 @merchant.route('/register', methods=['GET', 'POST'])
 def register():
     form = MerchantRegistrationForm()
