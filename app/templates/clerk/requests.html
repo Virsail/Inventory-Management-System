@@ -56,9 +56,11 @@
         <td>{{request.product.product_name}}</td>
         <td>{{request.request_quantity}}</td>
         {%if request.request_status=='Pending'%}
-        <td><span class="badge badge-pill badge-danger">{{request.request_status}}</span></td>
-        {%else%}
+        <td><span class="badge badge-pill badge-primary">{{request.request_status}}</span></td>
+        {%elif request.request_status=='Approved'%}
         <td><span class="badge badge-pill badge-success">{{request.request_status}}</span></td>
+        {%else%}
+        <td><span class="badge badge-pill badge-danger">{{request.request_status}}</span></td>
         {%endif%}
         <td>{{request.request_time}}</td>
        

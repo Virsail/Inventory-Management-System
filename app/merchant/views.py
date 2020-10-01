@@ -46,7 +46,10 @@ def store_reports(store_name):
 @merchant.route('/product_requisition')
 @login_required
 def product_requisition():
-    return render_template('merchant/product_requisition.html')
+
+    prod_requests=ProductRequest.query.all()
+
+    return render_template('merchant/product_requisition.html',prod_requests=prod_requests)
 
 
 @merchant.route('/order_payment_status')
