@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{%block navlinks%}
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('merchant.index')}}">
+        <i class="fas fa-columns"></i>
+        Dashboard
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('merchant.clerks')}}">
+        <i class="fas fa-columns"></i>
+        Clerks
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('merchant.stores')}}">
+        <i class="fas fa-columns"></i>
+        Store Reports
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{url_for('merchant.product_requisition')}}">
+        <i class="fas fa-columns"></i>
+        Products Requests
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" href="{{url_for('merchant.order_payment_status')}}">
+        <i class="fas fa-columns"></i>
+        Orders Payment Status
+    </a>
+</li>
+
+{%endblock%}
+{%block content%}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-bar-chart"></i> ORDERS</div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Example DataTables Card-->
+                    <div class="col-lg-12">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <i class="fa fa-table"></i> Purchase Orders Received</div>
+                            <div class="card-body">
+                                {%if orders%}
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%"
+                                        cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Clerk Name</th>
+                                                <th>Product Name</th>
+                                                <th>Order Quantity</th>
+                                                <th>Payment Status</th>
+                                                <th>Order Total Cost</th>
+                                                <th>Date</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        {%for order in orders%}
+                                        <tfoot>
+                                            <tr>
+                                                <td>{{order.id}}</td>
+                                                <td>{{order.user.username}}</td>
+                                                <td>{{order.product_name}}</td>
+                                                <td>{{order.order_quantity}}</td>
+                                             
+                                                {%if order.order_payment=='Paid'%}
+                                                <td><span class="badge badge-pill badge-success">{{order.order_payment}}</span></td>
+                                                {%else%}
+                                                <td><span class="badge badge-pill badge-danger">{{order.order_payment}}</span></td>
+                                                {%endif%}
+                            
+                                                <td>{{order.order_total_amount}}</td>
+                                                <td>{{order.order_time}}</td>
+                                                {%if order.order_payment!='Paid'%}
+                                                <td><a href="{{url_for('merchant.pay_order',order_id=order.id)}}"><h5><span class="badge badge-primary">PAY</span></h5> </a> </td>
+                                                {%endif%}
+                                            </tr>
+                                        </tfoot>
+                                        {%endfor%}
+                                    </table>
+                                </div>
+                                {%else%}
+                                <div class="container text-center">
+                                    <div style="margin-top: 100px" class="alert alert-danger" role="alert">
+                                      <h4 class="alert-heading"><i class="far fa-surprise fa-lg"></i>No orders made</h4>
+                                      <hr>
+                                    </div>
+                                  </div>
+                                {%endif%}
+
+                            </div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

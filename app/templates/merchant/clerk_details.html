@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/merchant.css') }}">
+{% endblock styles %}
+{%block navlinks%}
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('merchant.index')}}">
+    <i class="fas fa-columns"></i>
+    Dashboard
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="{{url_for('merchant.clerks')}}">
+    <i class="fas fa-columns"></i>
+    Clerks
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('merchant.stores')}}">
+    <i class="fas fa-columns"></i>
+    Store Reports
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('merchant.product_requisition')}}">
+    <i class="fas fa-columns"></i>
+    Products Requests
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('merchant.order_payment_status')}}">
+    <i class="fas fa-columns"></i>
+    Orders Payment Status
+  </a>
+</li>
+{%endblock%}
+{% block content %}
+<div class="container">
+  <div class="card details mb-3">
+    <div class="card-header">
+      <div class="image d-flex">
+        <img class="rounded-circle account-img" src="{{ url_for('static', filename=clerk.profile_pic_path) }}" alt="">
+        <h2 class="align-items-center ml-3 mt-5">Clerk</h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Personal Details</h4>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <h5>Fullname: {{clerk.username}}</h5>
+        </li>
+        
+        <li class="list-group-item">
+          <h5>Email : {{clerk.email}}</h5>
+        </li>
+        <li class="list-group-item">
+          <h5>Role : {{clerk.role}}</h5>
+        </li>
+        <li class="list-group-item">
+          <h5>Account Status : <span class="badge badge-success">{{clerk.status}}</span></h5>
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      
+        {%if clerk.status=='Active'%}
+        <a class="btn btn-danger" href="{{url_for('merchant.update_status',clerk_name=clerk.username)}}">Deactivate</a>
+        {%else%}
+        <a class="btn btn-success" href="{{url_for('merchant.update_status',clerk_name=clerk.username)}}">Activate</a>
+        {%endif%}
+        
+      <a href="{{url_for('merchant.delete_clerk',clerk_name=clerk.username)}}"><button type="submit" class="btn btn-danger">Delete Account</button></a> 
+    </div>
+  </div>
+  {% endblock content %}

@@ -3,29 +3,76 @@
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/merchant.css') }}">
 {% endblock styles %}
+
+{%block navlinks%}
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('merchant.index')}}">
+    <i class="fas fa-columns"></i>
+    Dashboard
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="{{url_for('merchant.clerks')}}">
+    <i class="fas fa-columns"></i>
+    Clerks
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('merchant.stores')}}">
+    <i class="fas fa-columns"></i>
+    Store Reports
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('merchant.product_requisition')}}">
+    <i class="fas fa-columns"></i>
+    Products Requests
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('merchant.order_payment_status')}}">
+    <i class="fas fa-columns"></i>
+    Orders Payment Status
+  </a>
+</li>
+
+{%endblock%}
 {% block content %}
 <div class="merchant-page">
   <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-
-      <div class="col-md-10">
-        <h2>Clerks</h2>
-        <div class="row d-flex flex-wrap-wrap admin-card">
-          <div class="card col-md-5">
-            <div class="card-body">
-              <img class="rounded-circle account-img" src="{{ url_for('static', filename='img/default.jpg') }}" alt="">
-              <h4><a href="{{ url_for('merchant.clerk_name') }}">Tony Nyadundo</a></h4>
-            </div>
-          </div>
-          <div class="card col-md-5">
-            <div class="card-body">
-              <img class="rounded-circle account-img" src="{{ url_for('static', filename='img/default.jpg') }}" alt="">
-              <h4><a href="{{ url_for('merchant.clerk_name') }}">Tony Nyadundo</a></h4>
-            </div>
+    <div class="btn-group dropright">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Clerks
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url_for('merchant.clerks') }}">Clerks</a>
+        <a class="dropdown-item" href="{{ url_for('merchant.register') }}">New Employee</a>
+      </div>
+    </div>
+    <div class="row mt-4">
+      {%if clerks%}
+      {%for clerk in clerks%}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <img class="rounded-circle account-img" src="{{ url_for('static', filename=clerk.profile_pic_path) }}" alt="">
+            <h6><a href="{{ url_for('merchant.clerk_details',clerk_name=clerk.username) }}">{{clerk.username}}</a></h6>
           </div>
         </div>
       </div>
+      {%endfor%}
+      {%else%}
+      <div class="container text-center">
+        <div style="margin-top: 100px" class="alert alert-danger" role="alert">
+          <h4 class="alert-heading"><i class="far fa-surprise fa-lg"></i> No clerks in your store.</h4>
+          <a href="{{url_for('merchant.register')}}"> <button type="submit" class="btn btn-primary pull-right text-center">SEND INVITE</button></a>
+          <hr>
+        </div>
+      </div>
+      {%endif%}
+      
+
     </div>
   </div>
 </div>

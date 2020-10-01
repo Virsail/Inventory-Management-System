@@ -18,7 +18,18 @@
     Update products 
   </a>
 </li>
-
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('clerk.my_sales')}}">
+    <i class="fas fa-columns"></i>
+    My Sales
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{url_for('clerk.my_requests')}}">
+    <i class="fas fa-columns"></i>
+    Product Requests
+  </a>
+</li>
 {%endblock%}
 {%block content%}
 <div class="card mt-5">
@@ -27,7 +38,7 @@
     <p class="card-category">Add received items/orders</p>
   </div>
   <div class="card-body">
-    <form>
+    <form action="" method="post">
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
