@@ -206,21 +206,23 @@ def datasets():
     print("*" * 50)
     sales_query = pd.read_sql_query("SELECT * FROM sales", con=db.engine)
     revenue = sales_query.groupby([sales_query['sale_time'].dt.date])['sale_amount'].sum()
-    revenue = revenue.to_json(orient="columns", date_format="iso")
+    revenue = revenue.to_json(orient="split",date_format='iso')
     products_query = pd.read_sql_query("SELECT * FROM products", con=db.engine)._get_numeric_data().drop(columns=['id'])
     total_sales = sales_query['sale_amount'].sum()
     for_total_cost = products_query.drop(columns=['product_selling_price'])
     total_cost = ((for_total_cost['product_spoilt'] + for_total_cost['product_stock']) * for_total_cost[
         'product_buying_price']).sum()
     available_stock = products_query['product_stock'].sum()
-    product_units_sold = sales_query.groupby([sales_query['sale_time'].dt.date])['sale_quantity'].sum().to_json(
-        orient="columns", date_format="iso")
+    product_units_sold_chart = sales_query.groupby([sales_query['sale_time'].dt.date])['sale_quantity'].sum().to_json(orient="split",date_format='iso')
+    product_units_sold = sales_query['sale_quantity'].sum()
     data = dict(
         total_cost=int(total_cost),
         available_stock=int(available_stock),
-        product_units_sold=product_units_sold,
+        product_units_sold=int(product_units_sold),
         total_sales=int(total_sales),
-        revenue=revenue
+        revenue=revenue,
+        product_units_sold_chart=product_units_sold_chart,
+
     )
 
     # import pdb;
