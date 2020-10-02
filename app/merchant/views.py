@@ -222,7 +222,6 @@ def datasets():
         total_sales=int(total_sales),
         revenue=revenue,
         product_units_sold_chart=product_units_sold_chart,
-
     )
 
     # import pdb;
