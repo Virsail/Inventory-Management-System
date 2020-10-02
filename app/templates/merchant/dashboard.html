@@ -44,11 +44,9 @@
 {% block content %}
     <div class="content-wrapper">
         <div class="container-fluid">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
-                </li>
-            </ol>
+            <h4>Dashboard</h4>
+            <div class="card">
+                <div class="card-body">
             <div class="row">
                 <div class="col-xl-3 col-sm-6 mb-3">
                     <div class="card text-white bg-primary o-hidden h-100">
@@ -120,18 +118,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <i class="fa fa-bar-chart"></i> Revenue Graphs
-                        </div>
-                        <div class="card-body">
+                        <div class="col-sm12 card-body">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <!-- Example Notifications Card-->
                                     <div class="card mb-3">
                                         <div class="card-header">
-                                            <i class="fa fa-bell-o"></i>Revenue
+                                            <h4><i class="fa fa-bell-o"></i> Revenue</h4>
                                         </div>
                                         <div class="list-group list-group-flush small">
                                             <div id="message-box">
@@ -152,10 +145,9 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <!-- Example Notifications Card-->
-                                    <div class="card mb-3">
+                                    <div class="card">
                                         <div class="card-header">
-                                            <i class="fa fa-bell-o"></i> Purchases Summary
+                                            <h4><i class="fa fa-bell-o"></i> Purchases Summary</h4>
                                         </div>
                                         <div class="list-group list-group-flush small">
                                             <div id="message-box">
@@ -173,49 +165,16 @@
                                         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <!-- Example Notifications Card-->
-                                    <div class="card mb-3">
-                                        <div class="card-header">
-                                            <i class="fa fa-bell-o"></i> Product Units Sold
-                                        </div>
-                                        <div class="list-group list-group-flush small">
-                                            <div id="message-box">
-                                                <a class="list-group-item list-group-item-action" href="#">
-                                                    <div class="media">
-                                                        <div class="media-body">
-                                                            <img src="../static/img/graph.png" width="300" height="200">
-                                                            <div class="text-muted smaller">Today at 4:31 PM - 1hr ago
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <a class="list-group-item list-group-item-action" href="#">View all
-                                                activity...</a>
-                                        </div>
-                                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                    </div>
-                </div>
+
             </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <i class="fa fa-bar-chart"></i> ORDERS
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <!-- Example DataTables Card-->
-                                <div class="col-lg-7">
+
+                                <div class="col-sm-12">
                                     <div class="card mb-3">
                                         <div class="card-header">
-                                            <i class="fa fa-table"></i> Sales Orders
+                                             <h4><i class="fa fa-table"></i>Sales Orders</h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -226,8 +185,8 @@
                                                         <th>Order Id</th>
                                                         <th>Customer</th>
                                                         <th>Date</th>
-                                                        <th>Status</th>
                                                         <th>Order Total</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody id="customer-table">
@@ -235,49 +194,48 @@
                                                         <td>OR1024</td>
                                                         <td>George Kilewa</td>
                                                         <td>30 Sep 2020</td>
-                                                        <td>
-                                                            <button class="btn-danger">Cancelled</button>
-                                                        </td>
                                                         <td>Ksh 30000</td>
+                                                        <td>
+                                                            <button class="btn btn-danger">Cancelled</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>OR1024</td>
                                                         <td>George Kilewa</td>
                                                         <td>30 Sep 2020</td>
-                                                        <td>
-                                                            <button class="btn-success">Approved</button>
-                                                        </td>
                                                         <td>Ksh 30000</td>
+                                                        <td>
+                                                            <button class="btn btn-success">Approved</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>OR1024</td>
                                                         <td>George Kilewa</td>
                                                         <td>30 Sep 2020</td>
-                                                        <td>
-                                                            <button class="btn-success">Approved</button>
-                                                        </td>
                                                         <td>Ksh 30000</td>
+                                                        <td>
+                                                            <button class="btn btn-success">Approved</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>OR1024</td>
                                                         <td>George Kilewa</td>
                                                         <td>30 Sep 2020</td>
-                                                        <td>
-                                                            <button class="btn-info">Pending</button>
-                                                        </td>
                                                         <td>Ksh 30000</td>
+                                                        <td>
+                                                            <button class="btn btn-info">Pending</button>
+                                                        </td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                     </div>
                                 </div>
-                                <div class="col-lg-5">
+                                <div class="col-sm-12">
                                     <div class="card mb-3">
                                         <div class="card-header">
-                                            <i class="fa fa-table"></i> Purchase Orders
+                                           <h4> <i class="fa fa-table"></i> Purchase Orders</h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -295,7 +253,7 @@
                                                         <td>PO001</td>
                                                         <td>Ksh 20000</td>
                                                         <td>
-                                                            <button class="btn-info">Pending</button>
+                                                            <button class="btn btn-info">Pending</button>
                                                         </td>
                                                     </tr>
                                                     </tfoot>
@@ -304,7 +262,7 @@
                                                         <td>PO002</td>
                                                         <td>Ksh 20600</td>
                                                         <td>
-                                                            <button class="btn-success">Approved</button>
+                                                            <button class="btn btn-success">Approved</button>
                                                         </td>
                                                     </tr>
                                                     </tfoot>
@@ -313,7 +271,7 @@
                                                         <td>PO004</td>
                                                         <td>Ksh 45000</td>
                                                         <td>
-                                                            <button class="btn-success">Approved</button>
+                                                            <button class=" btn btn-success">Approved</button>
                                                         </td>
                                                     </tr>
                                                     </tfoot>
@@ -322,20 +280,17 @@
                                                         <td>PO005</td>
                                                         <td>Ksh 40000</td>
                                                         <td>
-                                                            <button class="btn-success">Approved</button>
+                                                            <button class="btn btn-success">Approved</button>
                                                         </td>
                                                     </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                    </div>
+            </div>
+
                 </div>
             </div>
             <footer class="footer" style="color: wheat; margin-bottom: auto;">
@@ -360,8 +315,8 @@ const formatDate = date=>{
                 label:"Revenue",
                 fill: true,
                 lineTension: 0.1,
-                backgroundColor: "rgba(75,192,192,0.4)",
-                borderColor: "rgba(75,192,192,1)",
+                backgroundColor: "rgba(40,192,0,0.83)",
+                borderColor: "rgb(0,192,2)",
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
@@ -387,15 +342,15 @@ const formatDate = date=>{
     }
     loadRevenueChart()
 
-    const loadPutchaseSummaryChart=()=>{
+    const loadPurchaseSummaryChart=()=>{
         const chartData = {
             labels:  JSON.parse({{ stats['product_units_sold_chart']|tojson }}).index.map(date=>formatDate(date)),
             datasets: [{
-                label:"Revenue",
+                label:"Orders",
                 fill: true,
                 lineTension: 0.1,
-                backgroundColor: "rgba(75,192,192,0.4)",
-                borderColor: "rgba(75,192,192,1)",
+                backgroundColor: "rgba(0,183,22,0.64)",
+                borderColor: "rgb(0,209,72)",
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
@@ -410,7 +365,7 @@ const formatDate = date=>{
                 pointRadius: 1,
                 pointHitRadius: 10,
                 data: JSON.parse({{ stats['product_units_sold_chart']|tojson }}).data,
-                spanGaps: false
+                spanGaps: false,
             }]
         };
         const revenueChart_loc = document.getElementById("purchase_summary").getContext("2d");
@@ -419,6 +374,7 @@ const formatDate = date=>{
             data: chartData,
         });
     }
+    loadPurchaseSummaryChart()
 
 </script>
 {% endblock %}
