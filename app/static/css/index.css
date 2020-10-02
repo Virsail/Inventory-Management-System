@@ -117,8 +117,8 @@ body {
 }
 nav.navbar{
   /*background-color: black !important;*/
-  background: white !important;
-  color: black !important;
+  background: black !important;
+
   height: 70px !important;
-  display: none;
+
 }
