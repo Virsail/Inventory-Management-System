@@ -1,318 +1,380 @@
 {% extends 'base.html' %}
 
 {% block styles %}
-{{super()}}
-<link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
-{% endblock %}
-{%block navlinks%}
-<li class="nav-item">
-    <a class="nav-link active" href="{{url_for('merchant.index')}}">
-        <i class="fas fa-columns"></i>
-        Dashboard
-    </a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{{url_for('merchant.clerks')}}">
-        <i class="fas fa-columns"></i>
-        Clerks
-    </a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{{url_for('merchant.stores')}}">
-        <i class="fas fa-columns"></i>
-        Store Reports
-    </a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{{url_for('merchant.product_requisition')}}">
-        <i class="fas fa-columns"></i>
-        Products Requests
-    </a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{{url_for('merchant.order_payment_status')}}">
-        <i class="fas fa-columns"></i>
-        Orders Payment Status
-    </a>
-</li>
+    {{ super() }}
+    <link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
 
-{%endblock%}
-{%block content%}
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="#">Dashboard</a>
-            </li>
-        </ol>
-        <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-primary o-hidden h-100">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa fa-fw fa-shopping-cart"></i>
+  <script type="text/javascript" src="{{url_for('static',filename='js/Chart.min.js')}}"></script>
+      <link href="{{url_for('static',filename='css/Chart.min.css')}}" rel="stylesheet">
+
+{% endblock %}
+{% block navlinks %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ url_for('merchant.index') }}">
+            <i class="fas fa-columns"></i>
+            Dashboard
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('merchant.clerks') }}">
+            <i class="fas fa-columns"></i>
+            Clerks
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('merchant.stores') }}">
+            <i class="fas fa-columns"></i>
+            Store Reports
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('merchant.product_requisition') }}">
+            <i class="fas fa-columns"></i>
+            Products Requests
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('merchant.order_payment_status') }}">
+            <i class="fas fa-columns"></i>
+            Orders Payment Status
+        </a>
+    </li>
+
+{% endblock %}
+{% block content %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <h4>Dashboard</h4>
+            <div class="card">
+                <div class="card-body">
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-primary o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa fa-fw fa-shopping-cart"></i>
+                            </div>
+                            <div class="mr-5"> Total Sales <br><span
+                                    id="message-count"><b>Ksh {{ stats['total_sales'] }}</b></span></div>
                         </div>
-                        <div class="mr-5"> Total Sales <br><span id="message-count">Ksh 3,405,000</span></div>
-                    </div>
-                    <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
                             <i class="fa fa-angle-right"></i>
                         </span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-warning o-hidden h-100">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa fa-fw fa-shopping-cart"></i>
-                        </div>
-                        <div class="mr-5">Total Cost<br><span id="message-count">Ksh 300,450</span></div>
+                        </a>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-warning o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa fa-fw fa-shopping-cart"></i>
+                            </div>
+                            <div class="mr-5">Total Cost<br><span
+                                    id="message-count"><b>Ksh {{ stats['total_cost'] }}</b></span></div>
+                        </div>
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
                             <i class="fa fa-fw fa-shopping-cart"></i>
                         </span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-success o-hidden h-100">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa fa-fw fa-shopping-cart"></i>
-                        </div>
-                        <div class="mr-5"> Total Products Sold <br><span id="order-count">12056</span></div>
+                        </a>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-success o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa fa-fw fa-shopping-cart"></i>
+                            </div>
+                            <div class="mr-5"> Total Products Sold <br><span
+                                    id="order-count"><b>{{ stats['product_units_sold'] }}</b></span></div>
+                        </div>
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
                             <i class="fa fa-angle-right"></i>
                         </span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-danger o-hidden h-100">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa fa-fw fa-shopping-cart"></i>
-                        </div>
-                        <div class="mr-5">Available Stock<br><span id="order-count">120099</span></div>
+                        </a>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-danger o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa fa-fw fa-shopping-cart"></i>
+                            </div>
+                            <div class="mr-5">Available Stock<br><span
+                                    id="order-count"><b>{{ stats['available_stock'] }}</b></span></div>
+                        </div>
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
                             <i class="fa fa-angle-right"></i>
                         </span>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fa fa-bar-chart"></i> Revenue Graphs</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <!-- Example Notifications Card-->
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <i class="fa fa-bell-o"></i>Revenue vs Cost</div>
-                                    <div class="list-group list-group-flush small">
-                                        <div id="message-box">
-                                            <a class="list-group-item list-group-item-action" href="#">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <img src="../static/img/graph.png" width="300" height="200">
-                                                        <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
+            <div class="row">
+                        <div class="col-sm12 card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <!-- Example Notifications Card-->
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            <h4><i class="fa fa-bell-o"></i> Revenue</h4>
                                         </div>
-                                        <a class="list-group-item list-group-item-action" href="#">View all
-                                            activity...</a>
+                                        <div class="list-group list-group-flush small">
+                                            <div id="message-box">
+                                                <a class="list-group-item list-group-item-action" href="#">
+                                                    <div class="media">
+                                                        <div class="media-body">
+
+                                                            <canvas id="revenue_chart"
+                                                                    ></canvas>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <a class="list-group-item list-group-item-action" href="#">View all
+                                                activity...</a>
+                                        </div>
+                                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                     </div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <!-- Example Notifications Card-->
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <i class="fa fa-bell-o"></i> Purchases Summary</div>
-                                    <div class="list-group list-group-flush small">
-                                        <div id="message-box">
-                                            <a class="list-group-item list-group-item-action" href="#">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <img src="../static/img/graph.png" width="300" height="200">
-                                                        <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4><i class="fa fa-bell-o"></i> Purchases Summary</h4>
                                         </div>
-                                        <a class="list-group-item list-group-item-action" href="#">View all
-                                            activity...</a>
-                                    </div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <!-- Example Notifications Card-->
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <i class="fa fa-bell-o"></i> Product Units Sold</div>
-                                    <div class="list-group list-group-flush small">
-                                        <div id="message-box">
-                                            <a class="list-group-item list-group-item-action" href="#">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <img src="../static/img/graph.png" width="300" height="200">
-                                                        <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
+                                        <div class="list-group list-group-flush small">
+                                            <div id="message-box">
+                                                <a class="list-group-item list-group-item-action" href="#">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <canvas id="purchase_summary"></canvas>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            </div>
+                                            <a class="list-group-item list-group-item-action" href="#">View all
+                                                activity...</a>
                                         </div>
-                                        <a class="list-group-item list-group-item-action" href="#">View all
-                                            activity...</a>
+                                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                     </div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                </div>
+
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fa fa-bar-chart"></i> ORDERS</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <!-- Example DataTables Card-->
-                            <div class="col-lg-7">
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <i class="fa fa-table"></i> Sales Orders</div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%"
-                                                cellspacing="0">
-                                                <thead>
+            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                             <h4><i class="fa fa-table"></i>Sales Orders</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%"
+                                                       cellspacing="0">
+                                                    <thead>
                                                     <tr>
                                                         <th>Order Id</th>
                                                         <th>Customer</th>
                                                         <th>Date</th>
-                                                        <th>Status</th>
                                                         <th>Order Total</th>
+                                                        <th>Status</th>
                                                     </tr>
-                                                </thead>
-                                                <tbody id="customer-table">
+                                                    </thead>
+                                                    <tbody id="customer-table">
                                                     <tr>
                                                         <td>OR1024</td>
                                                         <td>George Kilewa</td>
                                                         <td>30 Sep 2020</td>
-                                                        <td><button class="btn-danger">Cancelled</button></td>
                                                         <td>Ksh 30000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>OR1024</td>
-                                                        <td>George Kilewa</td>
-                                                        <td>30 Sep 2020</td>
-                                                        <td><button class="btn-success">Approved</button></td>
-                                                        <td>Ksh 30000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>OR1024</td>
-                                                        <td>George Kilewa</td>
-                                                        <td>30 Sep 2020</td>
-                                                        <td><button class="btn-success">Approved</button></td>
-                                                        <td>Ksh 30000</td>
+                                                        <td>
+                                                            <button class="btn btn-danger">Cancelled</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>OR1024</td>
                                                         <td>George Kilewa</td>
                                                         <td>30 Sep 2020</td>
-                                                        <td><button class="btn-info">Pending</button></td>
                                                         <td>Ksh 30000</td>
+                                                        <td>
+                                                            <button class="btn btn-success">Approved</button>
+                                                        </td>
                                                     </tr>
-                                                </tbody>
-                                            </table>
+                                                    <tr>
+                                                        <td>OR1024</td>
+                                                        <td>George Kilewa</td>
+                                                        <td>30 Sep 2020</td>
+                                                        <td>Ksh 30000</td>
+                                                        <td>
+                                                            <button class="btn btn-success">Approved</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>OR1024</td>
+                                                        <td>George Kilewa</td>
+                                                        <td>30 Sep 2020</td>
+                                                        <td>Ksh 30000</td>
+                                                        <td>
+                                                            <button class="btn btn-info">Pending</button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                 </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <i class="fa fa-table"></i> Purchase Orders</div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%"
-                                                cellspacing="0">
-                                                <thead>
+                                <div class="col-sm-12">
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                           <h4> <i class="fa fa-table"></i> Purchase Orders</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%"
+                                                       cellspacing="0">
+                                                    <thead>
                                                     <tr>
                                                         <th>Order ID</th>
                                                         <th>Amount</th>
                                                         <th>Status</th>
                                                     </tr>
-                                                </thead>
-                                                <tfoot>
+                                                    </thead>
+                                                    <tfoot>
                                                     <tr>
                                                         <td>PO001</td>
                                                         <td>Ksh 20000</td>
-                                                        <td><button class="btn-info">Pending</button></td>
+                                                        <td>
+                                                            <button class="btn btn-info">Pending</button>
+                                                        </td>
                                                     </tr>
-                                                </tfoot>
-                                                <tfoot>
+                                                    </tfoot>
+                                                    <tfoot>
                                                     <tr>
                                                         <td>PO002</td>
                                                         <td>Ksh 20600</td>
-                                                        <td><button class="btn-success">Approved</button></td>
+                                                        <td>
+                                                            <button class="btn btn-success">Approved</button>
+                                                        </td>
                                                     </tr>
-                                                </tfoot>
-                                                <tfoot>
+                                                    </tfoot>
+                                                    <tfoot>
                                                     <tr>
                                                         <td>PO004</td>
                                                         <td>Ksh 45000</td>
-                                                        <td><button class="btn-success">Approved</button></td>
+                                                        <td>
+                                                            <button class=" btn btn-success">Approved</button>
+                                                        </td>
                                                     </tr>
-                                                </tfoot>
-                                                <tfoot>
+                                                    </tfoot>
+                                                    <tfoot>
                                                     <tr>
                                                         <td>PO005</td>
                                                         <td>Ksh 40000</td>
-                                                        <td><button class="btn-success">Approved</button></td>
+                                                        <td>
+                                                            <button class="btn btn-success">Approved</button>
+                                                        </td>
                                                     </tr>
-                                                </tfoot>
-                                            </table>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                 </div>
-                            </div>
-                        </div>
+            </div>
+
+                </div>
+            </div>
+            <footer class="footer" style="color: wheat; margin-bottom: auto;">
+                <div class="container">
+                    <div class="text-center">
+                        <small>Copyright © Inventory Management System 2020.</small>
                     </div>
-                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
-            </div>
+            </footer>
         </div>
-        <footer class="footer" style="color: wheat; margin-bottom: auto;">
-            <div class="container">
-                <div class="text-center">
-                    <small>Copyright © Inventory Management System 2020.</small>
-                </div>
-            </div>
-        </footer>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    {%endblock%}
+<script type="application/javascript">
+const formatDate = date=>{
+    console.log('date',date)
+    const js_Date = new Date(date);
+    return new Intl.DateTimeFormat('en-GB').format(js_Date);
+};
+    function loadRevenueChart(){
+        const chartData = {
+            labels:  JSON.parse({{ stats['revenue']|tojson }}).index.map(date=>formatDate(date)),
+            datasets: [{
+                label:"Revenue",
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: "rgba(40,192,0,0.83)",
+                borderColor: "rgb(0,192,2)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: JSON.parse({{ stats['revenue']|tojson }}).data,
+                spanGaps: false
+            }]
+        }
+        const revenueChart_loc = document.getElementById("revenue_chart").getContext("2d");
+        const revenueChartRender = new Chart(revenueChart_loc, {
+            type: 'line',
+            data: chartData,
+        });
+    }
+    loadRevenueChart()
+
+    const loadPurchaseSummaryChart=()=>{
+        const chartData = {
+            labels:  JSON.parse({{ stats['product_units_sold_chart']|tojson }}).index.map(date=>formatDate(date)),
+            datasets: [{
+                label:"Orders",
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: "rgba(0,183,22,0.64)",
+                borderColor: "rgb(0,209,72)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: JSON.parse({{ stats['product_units_sold_chart']|tojson }}).data,
+                spanGaps: false,
+            }]
+        };
+        const revenueChart_loc = document.getElementById("purchase_summary").getContext("2d");
+        const revenueChartRender = new Chart(revenueChart_loc, {
+            type: 'bar',
+            data: chartData,
+        });
+    }
+    loadPurchaseSummaryChart()
+
+</script>
+{% endblock %}

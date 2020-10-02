@@ -34,31 +34,28 @@
 
 
   {%block navbar%}
-  <nav class="navbar navbar-dark sticky-top bg-dark">
-    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-white text-center" href="#"> <p>Inventory <small>Management System</small></p></a>
+  <nav style="height: 70px; background-color: white; color: #0D0A0A" class="navbar sticky-top">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 pt-0 px-3 text-black text-center" href="#"> <p>Inventory <small>Management System</small></p></a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <ul class="navbar-nav flex-column px-3">
+    <ul class="navbar-nav  align-items-center flex-row px-3">
       {% if current_user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link" href="#"><span class="badge badge-primary"><i class="fas fa-user"></i> {{current_user.username | capitalize}}</span>
-        </a>
-      </li>
-      <li class="nav-item text-nowrap">
-        <a class="nav-link" href="{{url_for('auth.logout')}}">Sign out</a>
+
+      <li class="nav-item p-0 m-0 text-nowrap">
+        <a class=" nav-link" href="{{url_for('auth.logout')}}">Sign out</a>
       </li>
       {%else%}
-      <li class="nav-item">
+      <li class="nav-item pl-4  ">
         <a class="nav-link" href="{{url_for('auth.login')}}">Sign in
         </a>
       </li>
       {%endif%}
-      
+
     </ul>
   </nav>
   {%endblock%}
-  <div class="content container row">
+  <div class="content bg-white row">
     {%block sidenav%}
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="sidebar-sticky mt-5 pt-3">
@@ -72,12 +69,12 @@
           </li>
           {%block navlinks%}
           {%endblock%}
-        </ul>  
+        </ul>
       </div>
     </nav>
     {%endblock%}
     <div style="padding-top:35px" class="main col-md-9 ml-sm-auto col-lg-10 px-lg-5 px-md-4">
-     {%block flash%} 
+     {%block flash%}
       <div class="content container">
         {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
@@ -90,7 +87,7 @@
       </div>
       {%endblock%}
       {% block content %}{% endblock content %}
-    </div> 
+    </div>
 
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

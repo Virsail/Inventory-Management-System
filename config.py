@@ -17,7 +17,9 @@ class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kinc:kinc@localhost/inventory_system_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:root@localhost/ims_test'
+    DEBUG = True
+
 
 class DevConfig(Config):
     '''
@@ -26,7 +28,7 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kilewa:george@localhost/inventory_system'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:root@localhost/ims'
     DEBUG = True
 
 config_options = {
