@@ -15,18 +15,18 @@ body{
 input[type='text']{
     border: none;
     outline: none;
-    border-bottom: 1px red solid;
+    border-bottom: 1px wheat solid;
     background-color: inherit;
 
 }
 input[type='password']{
     border: none;
     outline: none;
-    border-bottom: 1px red solid;
+    border-bottom: 1px wheat solid;
     background-color: inherit;
 
 }
-p{
+p, h2{
     color: wheat;
 }
 a{
@@ -34,6 +34,9 @@ a{
     text-decoration: none;
 }
 a:hover{
-    color: #881b1b;
+    color: #743008;
     text-decoration: underline;
+}
+label{
+    color: wheat;
 }
