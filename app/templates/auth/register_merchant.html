@@ -7,7 +7,11 @@
 {%block flash%}
 {%endblock%}
 {% block content %}
-<div class="container mt-5">
+{% block styles %}
+  {{super()}}
+  <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+{% endblock %}
+<div class="container mt-5 register">
 <div class="row">
 <div class="col-md-2"> </div>
 <div class="col-md-8">

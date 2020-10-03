@@ -23,10 +23,10 @@ nav{
   letter-spacing: 4px;
 }
 #home{
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../imgs/bg.jpg) no-repeat center;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../imgs/bg-4.jpg) no-repeat center;
   background-size: cover;
   width: 100%;
-  min-height: 110vh;
+  height: 84vh;
 }
 .banner{
   width: 90%;

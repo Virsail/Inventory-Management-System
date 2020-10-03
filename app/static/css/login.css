@@ -1,0 +1,39 @@
+
+body{
+    background-image: url(../imgs/bg-2.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.login, .register{
+    border: 1px wheat solid;
+    margin: 30px;
+    border-radius: 10px;
+    padding: 30px;
+}
+input[type='text']{
+    border: none;
+    outline: none;
+    border-bottom: 1px red solid;
+    background-color: inherit;
+
+}
+input[type='password']{
+    border: none;
+    outline: none;
+    border-bottom: 1px red solid;
+    background-color: inherit;
+
+}
+p{
+    color: wheat;
+}
+a{
+    color: wheat;
+    text-decoration: none;
+}
+a:hover{
+    color: #881b1b;
+    text-decoration: underline;
+}
