@@ -26,7 +26,7 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kilewa:george@localhost/inventory_system'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:root@localhost/ims'
     DEBUG = True
 
 config_options = {

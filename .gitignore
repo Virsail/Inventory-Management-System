@@ -4,3 +4,5 @@ instance/
 env/
 venv/
 start.sh
+.idea
+start.bat
