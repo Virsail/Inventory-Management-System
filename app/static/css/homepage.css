@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn+SC&display=swap');
+
 body {
   font-family: "Poppins", Arial, sans-serif;
   background: #121618;
@@ -13,7 +15,7 @@ nav{
   background-color: black;
 }
 .navbar-brand,h1,h2,h3{
-  font-family: "Josefin Sans", Arial, sans-serif;
+  font-family: 'Vollkorn SC', serif;
 }
 .navbar-brand small{
   text-transform: uppercase;
@@ -26,7 +28,7 @@ nav{
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../imgs/bg-4.jpg) no-repeat center;
   background-size: cover;
   width: 100%;
-  height: 84vh;
+  height: 85vh;
 }
 .banner{
   width: 90%;
@@ -42,6 +44,10 @@ nav{
   background: #fac564;
   border: 1px solid #fac564;
   color: #000;
+}
+
+span, h4{
+  font-family: 'Vollkorn SC', serif;
 }
 
 
